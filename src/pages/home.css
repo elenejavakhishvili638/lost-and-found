@@ -1,3 +1,37 @@
 .home-page {
   min-height: 100vh;
+  margin-top: 50px;
+}
+
+.lost-and-found-container {
+  margin: 2rem 2rem;
+  text-align: justify;
+  color: #393053;
+}
+
+.lost-and-found-container h3 {
+  margin-bottom: 20px;
+}
+
+.lost-and-found-container p {
+  line-height: 1.8;
+
+  margin-bottom: 50px;
+  /* max-width: 45em; */
+}
+
+.lost-and-found-container a {
+  /* border: #393053 solid 2px; */
+  background-color: #393053a2;
+  color: aliceblue;
+  padding: 10px 20px;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s linear;
+}
+
+.lost-and-found-container a:hover {
+  background-color: #c92c6d;
 }

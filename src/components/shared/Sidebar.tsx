@@ -1,6 +1,6 @@
 import React from 'react'
 import "./sidebar.css"
-import { categories } from "../../assets/data/categories"
+import { pages } from "../../assets/data/pages"
 import { useAppSelector, useAppDispatch } from '../../store'
 import { IoMdClose } from "react-icons/io"
 import { sidebar } from '../../store/NavbarSlice'
@@ -21,10 +21,10 @@ const Sidebar = () => {
             </div>
             <div className="category-list">
                 {/* <Link to="/" className='category-list-item active-link'><div>HOME</div></Link> */}
-                {categories.map(category => {
-                    const match = useMatch(category.to)
+                {pages.map((page, index) => {
+                    const match = useMatch(page.to)
                     return (
-                        <Link to={category.to} className={`${match ? "category-list-item active-link" : "category-list-item"}`}><div>{category.title}</div></Link>
+                        <Link key={index} to={page.to} onClick={() => { dispatch(sidebar(false)) }} className={`${match ? "category-list-item active-link" : "category-list-item"}`}><div>{page.title}</div></Link>
                     )
                 })}
             </div>
