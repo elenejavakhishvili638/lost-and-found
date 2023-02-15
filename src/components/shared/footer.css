@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f0eeed;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  margin-top: 80px;
+  align-items: center;
+  padding: 5px;
+}
+
+.footer span,
+.footer a {
+  letter-spacing: 2px;
+  margin: 5px;
+  color: #332c39;
+  text-decoration: none;
+}

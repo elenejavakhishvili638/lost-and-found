@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0eeed;
+  padding: 15px 0 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.navbar-title {
+  margin: 0 15px;
+  font-size: 24px;
+  color: #c92c6d;
+}
+
+.navbar-logo-container {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.navbar-logo:hover {
+  width: 45px;
+  height: 45px;
+}
