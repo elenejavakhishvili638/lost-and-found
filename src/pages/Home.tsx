@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom"
 import NearYouItems from '../components/product/NearYouItems'
 import UploadProduct from '../components/product/UploadProduct'
+import Reviews from '../components/Reviews'
 import "./home.css"
+import { useAppSelector, useAppDispatch } from '../store'
+import { setLatitude, setLongitude, calculateDistances } from "../store/NearYouItems"
+import { items } from '../assets/data/items'
+
 
 const Home = () => {
+
+    const dispatch = useAppDispatch()
+    const longitude = useAppSelector((state) => state.nearYouItem.address.longitude)
+    const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
+    const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
+    // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
+    const threshold: number = 6000
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            dispatch(setLatitude(position.coords.latitude))
+            dispatch(setLongitude(position.coords.longitude))
+        })
+    }, [])
+
+
+    useEffect(() => {
+        dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
+    }, [])
+
+    console.log(filteredItems, longitude, latitude, items[0].address)
+
     return (
         <div className='home-page'>
             <div className='lost-and-found-container'>
@@ -22,7 +49,7 @@ const Home = () => {
                 <NearYouItems />
             </div>
             <div className="reviews">
-
+                <Reviews />
             </div>
         </div>
     )

@@ -8,8 +8,8 @@ import { Link, useMatch } from 'react-router-dom'
 
 const Navbar: React.FC = () => {
 
-    const categoryType = useAppSelector((state) => state.navbar.value);
-    const sideBarstate = useAppSelector((state) => state.navbar.open);
+    // const categoryType = useAppSelector((state) => state.navbar.value);
+    // const sideBarstate = useAppSelector((state) => state.navbar.open);
     const dispatch = useAppDispatch()
 
     // const [openSidebar, setOpenSidebar] = useState<boolean>(false)

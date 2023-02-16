@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import navbarSliceReducer from "./NavbarSlice"
+import nearYouItemsSliceReducer from "./NearYouItems"
 
 const store = configureStore({
     reducer: {
         navbar: navbarSliceReducer,
+        nearYouItem: nearYouItemsSliceReducer
     }
 })
 

@@ -16,7 +16,11 @@ export const items: Items[] = [
         },
         // estimated_location: "fnjfnkjfbhjkhfb",
         location: "tbilisi",
-        image: "dheiufhdkashkasjh"
+        image: "dheiufhdkashkasjh",
+        address: {
+            longitude: 45.23412,
+            latitude: 44.123123
+        }
     },
     {
         id: uuidv4(),
@@ -31,7 +35,11 @@ export const items: Items[] = [
         },
         // estimated_location: "fnjfnkjfbhjkhfb",
         location: "tbilisi",
-        image: "dheiufhdkashkasjh"
+        image: "dheiufhdkashkasjh",
+        address: {
+            longitude: 45.23412,
+            latitude: 44.123123
+        }
     },
     {
         id: uuidv4(),
@@ -46,7 +54,11 @@ export const items: Items[] = [
         },
         // estimated_location: "fnjfnkjfbhjkhfb",
         location: "tbilisi",
-        image: "dheiufhdkashkasjh"
+        image: "dheiufhdkashkasjh",
+        address: {
+            longitude: 45.23412,
+            latitude: 44.123123
+        }
     },
     {
         id: uuidv4(),
@@ -61,7 +73,11 @@ export const items: Items[] = [
         },
         // estimated_location: "fnjfnkjfbhjkhfb",
         location: "tbilisi",
-        image: "dheiufhdkashkasjh"
+        image: "dheiufhdkashkasjh",
+        address: {
+            longitude: 45.23412,
+            latitude: 44.123123
+        }
     },
     {
         id: uuidv4(),
@@ -76,7 +92,11 @@ export const items: Items[] = [
         },
         // estimated_location: "fnjfnkjfbhjkhfb",
         location: "tbilisi",
-        image: "dheiufhdkashkasjh"
+        image: "dheiufhdkashkasjh",
+        address: {
+            longitude: 45.23412,
+            latitude: 44.123123
+        }
     },
 
 ];

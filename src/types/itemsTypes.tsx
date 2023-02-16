@@ -14,6 +14,10 @@ export type Items = {
     // estimated_location?: string
     location: string
     image: string
+    address: {
+        longitude: number,
+        latitude: number
+    }
 }
 
 //iamge should be file

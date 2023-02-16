@@ -13,6 +13,44 @@ const UploadForm = () => {
         event.preventDefault();
         ref.current?.click();
     };
+
+    const handleLocationSubmit = () => {
+        // event.preventDefault();
+
+        // const geocoder = new geocoder("nominatim", {
+        //   provider: "osm",
+        //   lang: "en",
+        //   placeholder: "Enter location",
+        //   targetType: "text-input",
+        //   limit: 5,
+        //   keepOpen: true,
+        //   autoComplete: true,
+        //   autoCompleteMinLength: 2,
+        //   preventDefault: true,
+        // });
+
+        // geocoder.on("addresschosen", (evt) => {
+        //   const { coordinate } = evt;
+        //   setLatitude(coordinate[1]);
+        //   setLongitude(coordinate[0]);
+        // });
+
+        // geocoder.geocode(location);
+    };
+
+    // const map = new Map({
+    //     target: "map",
+    //     layers: [
+    //       new TileLayer({
+    //         source: new OSM(),
+    //       }),
+    //     ],
+    //     view: new View({
+    //       center: [0, 0],
+    //       zoom: 2,
+    //     }),
+    //   });
+
     return (
         <div className='upload-form-container'>
             <h3>Try and find what you have lost!</h3>
@@ -101,3 +139,32 @@ const UploadForm = () => {
 }
 
 export default UploadForm
+
+
+
+
+// const mapRef = useRef();
+
+// useEffect(() => {
+//   new window.ol.Map({
+//     target: mapRef.current.id,
+//     layers: [
+//       new window.ol.layer.Tile({
+//         source: new window.ol.source.OSM(),
+//       }),
+//     ],
+//     view: new window.ol.View({
+//       center: window.ol.proj.fromLonLat([center.lng, center.lat]),
+//       zoom: zoom,
+//     }),
+//   });
+// }, [center, zoom]);
+
+// return (
+//   <div
+//     ref={mapRef}
+//     id="map"
+//     className={`map ${className}`}
+//     style={style}
+//   ></div>
+// );
