@@ -4,11 +4,6 @@ import { Categories } from "../../types/categoriesTypes";
 export const categories: Categories[] = [
   {
     id: uuidv4(),
-    title: "HOME",
-
-  },
-  {
-    id: uuidv4(),
     title: "ALL PRODUCTS",
 
   },

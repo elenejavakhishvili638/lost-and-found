@@ -6,7 +6,7 @@ import "./App.css"
 import Sidebar from './components/shared/Sidebar'
 import Footer from './components/shared/Footer'
 import About from './pages/About'
-import Products from './pages/Products'
+import Items from './pages/Items'
 import UploadForm from './pages/UploadForm'
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/products' element={<Products />} />
+        <Route path='/items' element={<Items />} />
         <Route path='upload-product' element={<UploadForm />} />
       </Routes>
       <Footer />

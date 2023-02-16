@@ -5,7 +5,7 @@ type Properties = {
     description: string
 }
 
-export type Products = {
+export type Items = {
     id: string
     title: string
     lost_date: string

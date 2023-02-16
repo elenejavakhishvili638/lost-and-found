@@ -10,8 +10,8 @@ export const pages: Pages[] = [
         to: "ABOUT"
     },
     {
-        title: "PRODUCTS",
-        to: "PRODUCTS"
+        title: "ITEMS",
+        to: "ITEMS"
     },
 
 ];

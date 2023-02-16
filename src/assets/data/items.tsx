@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
-import { Products } from "../../types/productsTypes";
+import { Items } from "../../types/itemsTypes";
 
 
-export const categories: Products[] = [
+export const items: Items[] = [
     {
         id: uuidv4(),
         title: "pen",
