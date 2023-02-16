@@ -1,0 +1,48 @@
+.upload-product-container {
+  /* width: 100%; */
+  width: 90vw;
+  background-color: #c92c6d92;
+  height: 250px;
+  display: flex;
+  margin: auto;
+  /* justify-content: center; */
+  align-items: center;
+  background-image: url("../../assets/images/tourist.png");
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  background-position: 75% 98%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.upload-product-wrapper {
+  /* width: 90vw; */
+  margin: 1rem 1rem;
+  word-wrap: break-word;
+  color: #393053;
+  line-height: 2;
+  letter-spacing: 1px;
+}
+
+.upload-product-wrapper a {
+  color: #18122b;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.upload-product-wrapper a:hover {
+  color: #b3005e;
+}
+
+@media (min-width: 992px) {
+  .upload-product-container {
+    background-image: url("../../assets/images/tourist.png");
+    width: 95vw;
+    background-position: left;
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
+    height: 300px;
+  }
+  .upload-product-wrapper {
+    margin-left: 20%;
+  }
+}

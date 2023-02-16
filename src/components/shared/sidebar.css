@@ -14,6 +14,13 @@
   transform: translate(0px);
   z-index: 100;
   transition: all 0.3s linear;
+  background-image: url("../../assets/images/lost-and-found-bag.png"),
+    url("../../assets/images/lost-and-found-map.png"),
+    url("../../assets/images/lost.png"),
+    url("../../assets/images/lost-and-found.png");
+  background-position: left, 55% 70%, 80% 35%, 10% 5%;
+  background-size: 55px 55px;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 }
 
 .category-list {
@@ -54,6 +61,7 @@
   width: 28px;
   height: 28px;
   color: #000000;
+  cursor: pointer;
 }
 
 .active-link div {

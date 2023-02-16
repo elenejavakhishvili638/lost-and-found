@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Logo from "../../assets/images/download.png"
+import Logo from "../../assets/images/error-404.png"
 import "./navbar.css"
 import { useAppSelector, useAppDispatch } from '../../store'
 import { sidebar } from '../../store/NavbarSlice'

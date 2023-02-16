@@ -1,0 +1,154 @@
+.upload-form-container {
+  /* display: flex;
+  flex-direction: column; */
+  margin: 4rem auto;
+  width: 90vw;
+}
+
+.upload-form-container h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 20px; */
+  width: 90vw;
+  margin-top: 50px;
+}
+
+.form-first-part {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.lost-item {
+  display: grid;
+  width: 100%;
+  gap: 20px;
+}
+
+.lost-item-small-input,
+.lost-item-image {
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 20px; */
+}
+
+label {
+  color: #393053;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.lost-item-small-input input {
+  /* width: 200px; */
+  height: 30px;
+  margin-top: 10px;
+  border: none;
+  background-color: #f0eeed96;
+}
+
+.lost-item-image input {
+  display: none;
+}
+
+.form-image {
+  background-color: beige;
+  height: 180px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+.form-image img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.lost-item-image button {
+  border: 1px solid #20262e;
+  background-color: transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+  color: #393053;
+  font-weight: 500;
+  letter-spacing: 1px;
+  /* border: none; */
+}
+
+.lost-item-image button:hover {
+  background-color: #393053;
+  color: white;
+}
+
+.lost-item-image button:focus {
+  background-color: #20262e;
+  color: white;
+}
+
+.form-second-part {
+  display: grid;
+  /* flex-direction: column; */
+  /* width: 100%; */
+}
+
+.lost-item-location {
+  display: flex;
+  flex-direction: column;
+}
+
+.lost-item-location input {
+  height: 30px;
+  margin-top: 10px;
+  border: none;
+  background-color: #f0eeed96;
+}
+
+.lost-item-dscription {
+  margin-top: 30px;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.lost-item-dscription h3 {
+  color: #393053;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.description-vital-properties {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(3, minmax(50px, 1fr));
+  margin-bottom: 30px;
+}
+
+.decription-input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.decription-input input {
+  margin-top: 10px;
+  border: none;
+  background-color: #f0eeed96;
+  height: 30px;
+}
+
+.description-text textarea {
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid #20262e;
+  background-color: transparent;
+}

@@ -2,10 +2,13 @@
   height: 80vh;
   width: 90vw;
   margin: 40px auto;
-  display: grid;
-  gap: 40px;
   /* display: flex; */
   /* flex-direction: column; */
+}
+
+.about-container-wrap {
+  display: grid;
+  gap: 50px;
 }
 
 .about-container h1 {
