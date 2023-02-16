@@ -17,3 +17,10 @@
   color: #332c39;
   text-decoration: none;
 }
+
+@media (min-width: 992px) {
+  .footer span,
+  .footer a {
+    font-size: 18px;
+  }
+}

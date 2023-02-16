@@ -21,7 +21,7 @@
 .form-first-part {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-bottom: 50px;
   align-items: center;
 }
@@ -32,8 +32,7 @@
   gap: 20px;
 }
 
-.lost-item-small-input,
-.lost-item-image {
+.lost-item-small-input {
   display: flex;
   flex-direction: column;
   /* margin-bottom: 20px; */
@@ -146,9 +145,96 @@ label {
   height: 30px;
 }
 
+.description-text {
+  margin-bottom: 20px;
+}
+
 .description-text textarea {
   margin-top: 10px;
   width: 100%;
   border: 1px solid #20262e;
   background-color: transparent;
+}
+
+@media (min-width: 992px) {
+  .upload-form-container h3 {
+    margin-bottom: 20px;
+    font-size: 32px;
+  }
+
+  .form-first-part {
+    display: flex;
+    flex-direction: row;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* gap: 50px; */
+    justify-content: space-between;
+    margin-bottom: 50px;
+    align-items: center;
+  }
+
+  .lost-item {
+    height: 40vh;
+    width: 40vw;
+  }
+
+  label {
+    color: #393053;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 26px;
+  }
+
+  .lost-item-small-input input {
+    /* width: 200px; */
+    height: 70px;
+    margin-top: 10px;
+    border: none;
+    background-color: #f0eeed96;
+  }
+
+  .form-image {
+    height: 30vw;
+    width: 50vh;
+    margin-top: 0;
+    margin-left: 20px;
+  }
+
+  .form-image img {
+    height: 250px;
+    width: 250px;
+  }
+
+  .lost-item-image button {
+    padding: 20px 40px;
+    width: 20vw;
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .lost-item-location input {
+    height: 70px;
+  }
+
+  .description-vital-properties {
+    gap: 50px;
+  }
+
+  .description-vital-properties input {
+    height: 70px;
+  }
+
+  .description-text {
+    margin-bottom: 50px;
+  }
+
+  .form-third-part {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .description-text textarea {
+    margin-top: 45px;
+    height: 200px;
+  }
 }

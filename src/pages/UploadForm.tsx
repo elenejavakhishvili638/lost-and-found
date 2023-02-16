@@ -20,7 +20,7 @@ const UploadForm = () => {
                 <div className='form-first-part'>
                     <div className='lost-item'>
                         <SmallInput
-                            title="name"
+                            title="Name"
                             type='text'
                             className='lost-item-small-input'
                             name=''
@@ -75,22 +75,24 @@ const UploadForm = () => {
                                 value=''
                             />
                         </div>
-                        <Textarea
-                            className='description-text'
-                            title="Describe with more details"
-                            rows={4}
-                            cols={30}
-                            name=''
-                            value=''
-                        />
-                        <Textarea
-                            className='description-text'
-                            title="Would you like to add something?"
-                            rows={4}
-                            cols={30}
-                            name=''
-                            value=''
-                        />
+                        <div className='form-third-part'>
+                            <Textarea
+                                className='description-text'
+                                title="Describe with more details"
+                                rows={4}
+                                cols={30}
+                                name=''
+                                value=''
+                            />
+                            <Textarea
+                                className='description-text'
+                                title="Would you like to add something?"
+                                rows={4}
+                                cols={30}
+                                name=''
+                                value=''
+                            />
+                        </div>
                     </div>
                 </div>
             </form>
