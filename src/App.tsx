@@ -8,6 +8,7 @@ import Footer from './components/shared/Footer'
 import About from './pages/About'
 import Items from './pages/Items'
 import UploadForm from './pages/UploadForm'
+import FilteredItems from './pages/FilteredItems'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/about' element={<About />} />
         <Route path='/items' element={<Items />} />
         <Route path='upload-product' element={<UploadForm />} />
+        <Route path='/filtered-items' element={<FilteredItems />} />
       </Routes>
       <Footer />
     </Router>

@@ -18,8 +18,8 @@ export const items: Items[] = [
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {
-            longitude: 45.23412,
-            latitude: 44.123123
+            longitude: 44.7171335,
+            latitude: 41.9389861
         }
     },
     {

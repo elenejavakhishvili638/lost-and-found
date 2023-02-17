@@ -16,7 +16,7 @@ const Home = () => {
     const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
     // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
-    const threshold: number = 6000
+    const threshold: number = 100
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -34,22 +34,26 @@ const Home = () => {
 
     return (
         <div className='home-page'>
-            <div className='lost-and-found-container'>
-                <h3>Whould you like to find things you have lost?</h3>
-                <h3>Or help the ones who have lost ?</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <Link to="/items">
-                    See the items
-                </Link>
+            <div className="main-wrapper-first">
+                <div className='lost-and-found-container'>
+                    <h3>Whould you like to find things you have lost?</h3>
+                    <h3>Or help the ones who have lost ?</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <Link to="/items">
+                        See the items
+                    </Link>
+                </div>
+                <div className='your-products'>
+                    <UploadProduct />
+                </div>
             </div>
-            <div className='your-products'>
-                <UploadProduct />
-            </div>
-            <div className='near-your-place'>
+            <div className="main-wrapper-second">
+                {/* <div className='near-your-place'></div> */}
                 <NearYouItems />
-            </div>
-            <div className="reviews">
+
+                {/* <div className="reviews"> </div> */}
                 <Reviews />
+
             </div>
         </div>
     )

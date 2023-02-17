@@ -4,7 +4,7 @@ import "./items.css"
 
 const Items = () => {
     return (
-        <>
+        <div className='item-big-wrapper'>
             <div className='item-title'>
                 <h1>Lost items</h1>
                 <p>Can you see anything that is yours?</p>
@@ -15,7 +15,7 @@ const Items = () => {
                     const { color, size, shape, description } = vital_properties
                     return (
                         <div key={id} className="item-container">
-                            <div className='item-box'>
+                            <div className={`${items.length <= 2 ? "item-box small" : "item-box"}`}>
                                 <div className='item-box-image'>
                                     <img src={image} />
                                 </div>
@@ -37,7 +37,7 @@ const Items = () => {
                     )
                 })}
             </div>
-        </>
+        </div>
     )
 }
 

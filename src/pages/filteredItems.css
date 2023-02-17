@@ -1,0 +1,7 @@
+.items-near-you-container {
+  min-height: 100vh;
+}
+
+.small {
+  max-width: 360px;
+}

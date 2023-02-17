@@ -35,3 +35,15 @@
 .lost-and-found-container a:hover {
   background-color: #c92c6d;
 }
+
+@media (min-width: 992px) {
+  .main-wrapper-first {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 2fr));
+  }
+
+  .main-wrapper-second {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 2fr));
+  }
+}
