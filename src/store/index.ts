@@ -1,12 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit"
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import navbarSliceReducer from "./NavbarSlice"
 import nearYouItemsSliceReducer from "./NearYouItems"
+import formSliceReducer from "./FormSlice"
 
 const store = configureStore({
     reducer: {
         navbar: navbarSliceReducer,
-        nearYouItem: nearYouItemsSliceReducer
+        nearYouItem: nearYouItemsSliceReducer,
+        form: formSliceReducer,
+
+
     }
 })
 

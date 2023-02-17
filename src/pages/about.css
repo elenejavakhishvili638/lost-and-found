@@ -2,8 +2,7 @@
   height: 80vh;
   width: 90vw;
   margin: 40px auto;
-  /* display: flex; */
-  /* flex-direction: column; */
+  color: #443c68;
 }
 
 .about-container-wrap {
@@ -33,6 +32,9 @@
   .about-container {
     margin-top: 90px;
     height: 72vh;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
   }
   .about-wrap {
     /* min-height: 50%; */

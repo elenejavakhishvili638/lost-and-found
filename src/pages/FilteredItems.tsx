@@ -11,8 +11,8 @@ const FilteredItems = () => {
                 {filteredItems.length === 0 ? <p>Come back later, here is nothing</p> : (
                     <>
                         {filteredItems && filteredItems.map((item) => {
-                            const { id, image, title, location, lost_date, vital_properties, other } = item
-                            const { color, size, shape, description } = vital_properties
+                            const { id, image, title, location, lost_date, other, description } = item
+                            // const { color, size, shape, description } = vital_properties
                             return (
                                 <div key={id} className="item-container">
                                     <div className={`${filteredItems.length <= 2 ? "item-box small" : "item-box"}`}>
@@ -23,9 +23,9 @@ const FilteredItems = () => {
                                             <h3>{title}</h3>
                                             <h4>{lost_date}</h4>
                                             <div className='vital-properties-box'>
-                                                <p>Color - {color}</p>
+                                                {/* <p>Color - {color}</p>
                                                 <p>Size - {size}</p>
-                                                <p>Shape - {shape}</p>
+                                                <p>Shape - {shape}</p> */}
                                                 <p> {description}</p>
                                             </div>
                                             <h3>{location}</h3>

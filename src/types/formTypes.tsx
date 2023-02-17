@@ -5,20 +5,17 @@ type Properties = {
     description: string
 }
 
-export type Items = {
+export type Form = {
     id: string
     title: string
     lost_date: string
-    other?: string
-    // vital_properties: Properties
-    // estimated_location?: string
+    other: string
     description: string
     location: string
-    image: string
+    image: File | string
     address: {
         longitude: number,
         latitude: number
     }
-}
 
-//iamge should be file
+}

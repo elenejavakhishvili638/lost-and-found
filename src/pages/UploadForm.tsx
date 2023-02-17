@@ -1,13 +1,20 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import "./uploadForm.css"
 import mag from "../assets/images/magnifier.png"
 import SmallInput from '../components/shared/SmallInput';
 import BigInput from '../components/shared/BigInput';
 import TripleInput from '../components/shared/TripleInput';
 import Textarea from '../components/shared/Textarea';
+import { useAppDispatch, useAppSelector } from '../store';
+import { handleChange, handleImage, handleTextarea } from "../store/FormSlice"
 
 const UploadForm = () => {
     const ref = useRef<HTMLInputElement>(null);
+    const dispatch = useAppDispatch()
+    const [image, setImage] = useState<string>("")
+    const values = useAppSelector((state) => state.form.value)
+
+    // console.log(values.title)
 
     const pickImageHandler = (event: React.MouseEvent) => {
         event.preventDefault();
@@ -51,33 +58,63 @@ const UploadForm = () => {
     //     }),
     //   });
 
+    const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(handleChange({ name: event.target.name, value: event.target.value }))
+    }
+
+    const handleTextareas = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        dispatch(handleTextarea({ name: event.target.name, value: event.target.value }))
+    }
+
+    const handleImages = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selected = event.target.files?.[0]
+        if (selected) {
+            console.log(selected)
+            dispatch(handleImage(selected))
+        } else {
+            console.log("ssas")
+        }
+        // console.log(event.target.files)
+        if (selected) {
+            const reader = new FileReader();
+            reader.readAsDataURL(selected);
+            reader.onload = () => {
+                setImage(reader.result as string);
+            };
+        }
+    }
+
     return (
         <div className='upload-form-container'>
+
             <h3>Try and find what you have lost!</h3>
-            <form className='upload-form'>
+            <form className='upload-form' onSubmit={() => { handleLocationSubmit }}>
                 <div className='form-first-part'>
                     <div className='lost-item'>
                         <SmallInput
                             title="Name"
                             type='text'
                             className='lost-item-small-input'
-                            name=''
-                            value=''
+                            name='title'
+                            value={values.title}
+                            onChanges={handleChanges}
+                        // onChange={dispatch(handleChange)}
                         />
                         <SmallInput
                             title="Date of loss"
                             type='date'
                             className='lost-item-small-input'
-                            name=''
-                            value=''
+                            name='lost_date'
+                            value={values.lost_date}
+                            onChanges={handleChanges}
                         />
                         <div className='lost-item-image'>
-                            <input type="file" ref={ref} accept="image/*" />
+                            <input type="file" ref={ref} accept="image/*" onChange={handleImages} />
                             <button type='button' onClick={pickImageHandler}>Upload here</button>
                         </div>
                     </div>
                     <div className='form-image'>
-                        <img src={mag} alt='item' />
+                        {image && <img src={image} alt='item' />}
                     </div>
                 </div>
                 <div className="form-second-part">
@@ -85,12 +122,14 @@ const UploadForm = () => {
                         title="Location"
                         type='text'
                         className='lost-item-location'
-                        name=''
-                        value=''
+                        name='location'
+                        value={values.location}
+                        onChanges={handleChanges}
                     />
+
                     <div className="lost-item-dscription">
                         <h3>Description</h3>
-                        <div className='description-vital-properties'>
+                        {/* <div className='description-vital-properties'>
                             <TripleInput
                                 title="Color"
                                 type='text'
@@ -112,25 +151,29 @@ const UploadForm = () => {
                                 name=''
                                 value=''
                             />
-                        </div>
+                        </div> */}
                         <div className='form-third-part'>
                             <Textarea
                                 className='description-text'
                                 title="Describe with more details"
                                 rows={4}
                                 cols={30}
-                                name=''
-                                value=''
+                                name='description'
+                                value={values.description}
+                                onChanges={handleTextareas}
                             />
                             <Textarea
                                 className='description-text'
                                 title="Would you like to add something?"
                                 rows={4}
                                 cols={30}
-                                name=''
-                                value=''
+                                name='other'
+                                value={values.other}
+                                // value=''
+                                onChanges={handleTextareas}
                             />
                         </div>
+                        <button className='submit-form' type='submit'>Submit the form</button>
                     </div>
                 </div>
             </form>
