@@ -1,62 +1,33 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./uploadForm.css"
-import mag from "../assets/images/magnifier.png"
+import { v4 as uuidv4 } from "uuid";
+
+
 import SmallInput from '../components/shared/SmallInput';
 import BigInput from '../components/shared/BigInput';
-import TripleInput from '../components/shared/TripleInput';
+
 import Textarea from '../components/shared/Textarea';
 import { useAppDispatch, useAppSelector } from '../store';
-import { handleChange, handleImage, handleTextarea } from "../store/FormSlice"
+import { handleChange, handleImage, handleTextarea, handleSubmition } from "../store/FormSlice"
+import { useNavigate } from 'react-router-dom';
+
+// interface latLng {
+//     lengitude: number
+//     latitude: number
+// }
 
 const UploadForm = () => {
     const ref = useRef<HTMLInputElement>(null);
+    // const [latLng, setLatLng] = useState<latLng | null>(null);
     const dispatch = useAppDispatch()
     const [image, setImage] = useState<string>("")
     const values = useAppSelector((state) => state.form.value)
-
-    // console.log(values.title)
+    const navigate = useNavigate();
 
     const pickImageHandler = (event: React.MouseEvent) => {
         event.preventDefault();
         ref.current?.click();
     };
-
-    const handleLocationSubmit = () => {
-        // event.preventDefault();
-
-        // const geocoder = new geocoder("nominatim", {
-        //   provider: "osm",
-        //   lang: "en",
-        //   placeholder: "Enter location",
-        //   targetType: "text-input",
-        //   limit: 5,
-        //   keepOpen: true,
-        //   autoComplete: true,
-        //   autoCompleteMinLength: 2,
-        //   preventDefault: true,
-        // });
-
-        // geocoder.on("addresschosen", (evt) => {
-        //   const { coordinate } = evt;
-        //   setLatitude(coordinate[1]);
-        //   setLongitude(coordinate[0]);
-        // });
-
-        // geocoder.geocode(location);
-    };
-
-    // const map = new Map({
-    //     target: "map",
-    //     layers: [
-    //       new TileLayer({
-    //         source: new OSM(),
-    //       }),
-    //     ],
-    //     view: new View({
-    //       center: [0, 0],
-    //       zoom: 2,
-    //     }),
-    //   });
 
     const handleChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(handleChange({ name: event.target.name, value: event.target.value }))
@@ -82,13 +53,42 @@ const UploadForm = () => {
                 setImage(reader.result as string);
             };
         }
+
     }
+
+    // useEffect(() => {
+    //     // const url: string = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(values.location)}&key=${apiKey}`;
+    //     // fetch(url)
+    //     //     .then((response: Response) => response.json())
+    //     //     .then((data: any) => {
+    //     //         const { lat, lng }: { lat: number, lng: number } = data.results[0].geometry.location;
+    //     //         // console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+    //     //         setLatLng({ latitude: lat, lengitude: lng })
+    //     //     })
+    //     //     .catch((error: Error) => {
+    //     //         console.error('Error:', error);
+    //     //     });
+
+    // }, [latLng, setLatLng])
+
+    const handleLocationSubmit = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+
+        // for(const [key, value] of Object.entries(values)) {
+        //     if ()
+        // }
+
+        dispatch(handleSubmition({ ...values, id: uuidv4(), image: image }))
+
+        navigate("/items")
+
+    };
 
     return (
         <div className='upload-form-container'>
 
             <h3>Try and find what you have lost!</h3>
-            <form className='upload-form' onSubmit={() => { handleLocationSubmit }}>
+            <form className='upload-form' onSubmit={handleLocationSubmit}>
                 <div className='form-first-part'>
                     <div className='lost-item'>
                         <SmallInput

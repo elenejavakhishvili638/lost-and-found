@@ -1,3 +1,4 @@
+import { Items } from "./itemsTypes"
 
 export type inputProps = {
     title: string
@@ -16,4 +17,8 @@ export type textareaProps = {
     name: string
     value: string
     onChanges: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+export type nearYouProps = {
+    filteredItems: Items[]
 }

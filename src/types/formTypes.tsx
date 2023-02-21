@@ -1,9 +1,4 @@
-type Properties = {
-    color: string
-    size: string
-    shape: string
-    description: string
-}
+
 
 export type Form = {
     id: string
@@ -12,7 +7,7 @@ export type Form = {
     other: string
     description: string
     location: string
-    image: File | string
+    image: string | File
     address: {
         longitude: number,
         latitude: number

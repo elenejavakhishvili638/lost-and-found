@@ -1,9 +1,4 @@
-type Properties = {
-    color: string
-    size: string
-    shape: string
-    description: string
-}
+
 
 export type Items = {
     id: string
@@ -16,8 +11,8 @@ export type Items = {
     location: string
     image: string
     address: {
-        longitude: number,
-        latitude: number
+        longitude: number | undefined,
+        latitude: number | undefined
     }
 }
 

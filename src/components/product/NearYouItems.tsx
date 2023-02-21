@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { useAppSelector } from '../../store'
 import "./nearYouitems.css"
 import map from "../../assets/images/lost-and-found-map.png"
+import { nearYouProps } from '../../types/propsTypes'
 
-const NearYouItems = () => {
-    const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
+const NearYouItems: React.FC<nearYouProps> = ({ filteredItems }) => {
+    // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     return (
         <div className='items-near-you'>
             <div className='items-near-you-title'>

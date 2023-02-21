@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { items } from "../assets/data/items";
 import { Form } from "../types/formTypes";
+import { Items } from "../types/itemsTypes";
 
 interface FormState {
     value: Form
     // open: boolean
+    itemsList: Items[]
 }
 
 const initialState: FormState = {
@@ -19,7 +22,8 @@ const initialState: FormState = {
             longitude: 0,
             latitude: 0,
         }
-    }
+    },
+    itemsList: items
 }
 
 // interface FormPayload {
@@ -54,9 +58,14 @@ const formSlice = createSlice({
                 ...state.value,
                 [name]: value
             }
+        },
+        handleSubmition(state, action: PayloadAction<Items>) {
+            // const proxy = new Proxy(state.itemsList);
+            state.itemsList = [...items, action.payload]
+            console.log(state.itemsList)
         }
     },
 });
 
-export const { handleChange, handleImage, handleTextarea } = formSlice.actions;
+export const { handleChange, handleImage, handleTextarea, handleSubmition } = formSlice.actions;
 export default formSlice.reducer;

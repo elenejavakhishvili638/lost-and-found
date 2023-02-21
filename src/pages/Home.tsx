@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import NearYouItems from '../components/product/NearYouItems'
 import UploadProduct from '../components/product/UploadProduct'
@@ -8,10 +8,10 @@ import { useAppSelector, useAppDispatch } from '../store'
 import { setLatitude, setLongitude, calculateDistances } from "../store/NearYouItems"
 import { items } from '../assets/data/items'
 
-
 const Home = () => {
 
     const dispatch = useAppDispatch()
+    const [isLoading, setIsLoading] = useState<boolean>(true)
     const longitude = useAppSelector((state) => state.nearYouItem.address.longitude)
     const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
@@ -22,15 +22,15 @@ const Home = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             dispatch(setLatitude(position.coords.latitude))
             dispatch(setLongitude(position.coords.longitude))
+            dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
+            setIsLoading(false)
         })
-    }, [])
+    }, [isLoading])
 
 
-    useEffect(() => {
-        dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
-    }, [])
+    // console.log(filteredItems, longitude, latitude, items[0].address)
 
-    console.log(filteredItems, longitude, latitude, items[0].address)
+
 
     return (
         <div className='home-page'>
@@ -48,10 +48,14 @@ const Home = () => {
                 </div>
             </div>
             <div className="main-wrapper-second">
-                {/* <div className='near-your-place'></div> */}
-                <NearYouItems />
 
-                {/* <div className="reviews"> </div> */}
+                {isLoading ? (
+                    <p>Please wait locations are loading</p>
+                ) : (
+                    <NearYouItems filteredItems={filteredItems} />
+                )}
+                {/* <NearYouItems filteredItems={filteredItems} /> */}
+
                 <Reviews />
 
             </div>
@@ -60,3 +64,25 @@ const Home = () => {
 }
 
 export default Home
+
+
+
+        // const fetchGeoLocation = async () => {
+        //     try {
+        //         console.log(isLoading)
+        //         const position: GeolocationPosition = await new Promise((resolve, reject) => {
+        //             navigator.geolocation.getCurrentPosition(resolve, reject)
+        //         })
+        //         dispatch(setLatitude(position.coords.latitude))
+        //         dispatch(setLongitude(position.coords.longitude))
+        //         dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
+        //         setIsLoading(false)
+        //         console.log(isLoading)
+        //     }
+        //     catch (error) {
+        //         console.log(error)
+        //     }
+        // }
+        // console.log(isLoading)
+
+             // fetchGeoLocation()

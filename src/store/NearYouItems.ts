@@ -19,10 +19,10 @@ interface Location {
     }
 }
 
-interface LocationPayload {
-    location: Location
-    items: Items[]
-}
+// interface LocationPayload {
+//     location: Location
+//     items: Items[]
+// }
 
 interface LocationPayloadAction {
     // payload: LocationPayload
@@ -57,7 +57,7 @@ const nearYouItemsSlice = createSlice({
             // const threshold = action.payload.threshold
             state.filteredItems = items.filter((thing) => {
                 const distance = calculateDistance(location.address, thing)
-                console.log(distance)
+                // console.log(distance)
                 return distance <= action.payload.threshold
                 // return threshold !== undefined && distance <= threshold;
                 // return typeof threshold === "number" && distance <= threshold;

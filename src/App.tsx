@@ -19,7 +19,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/items' element={<Items />} />
-        <Route path='upload-product' element={<UploadForm />} />
+        <Route path='/upload-product' element={<UploadForm />} />
         <Route path='/filtered-items' element={<FilteredItems />} />
       </Routes>
       <Footer />
