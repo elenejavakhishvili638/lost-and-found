@@ -18,9 +18,40 @@
   text-decoration: none;
 }
 
+.design-logos {
+  display: none;
+}
+
 @media (min-width: 992px) {
   .footer span,
   .footer a {
     font-size: 18px;
   }
+
+  .footer {
+    margin: 0;
+  }
+
+  .design-logos {
+    /* transform: translate(0px);
+    z-index: 100; */
+    /* transition: all 0.3s linear; */
+    background-image: url("../../assets/images/lost-and-found-bag.png"),
+      url("../../assets/images/lost-and-found-map.png"),
+      url("../../assets/images/lost.png"),
+      url("../../assets/images/lost-and-found.png");
+    background-position: left bottom, 35% bottom, right bottom, 70% bottom;
+    background-size: 55px 55px;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+
+    height: 80px;
+    display: flex;
+    /* justify-content: space-between; */
+    margin: auto 20px;
+  }
+
+  /* .design-logos img {
+    height: 55px;
+    width: 55px;
+  } */
 }

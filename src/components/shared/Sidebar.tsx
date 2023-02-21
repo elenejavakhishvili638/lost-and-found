@@ -20,7 +20,6 @@ const Sidebar = () => {
                 <IoMdClose className='close-icon' />
             </div>
             <div className="category-list">
-                {/* <Link to="/" className='category-list-item active-link'><div>HOME</div></Link> */}
                 {pages.map((page, index) => {
                     const match = useMatch(page.to)
                     return (
