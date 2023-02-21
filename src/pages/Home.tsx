@@ -7,6 +7,7 @@ import "./home.css"
 import { useAppSelector, useAppDispatch } from '../store'
 import { setLatitude, setLongitude, calculateDistances } from "../store/NearYouItems"
 import { items } from '../assets/data/items'
+import Loading from '../components/shared/Loading'
 
 const Home = () => {
 
@@ -50,12 +51,7 @@ const Home = () => {
             <div className="main-wrapper-second">
 
                 {isLoading ? (
-                    // <div className='items-near-you'></div>
-
-                    <div className='items-near-you' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-                    </div>
-
+                    <Loading />
                 ) : (
                     <NearYouItems filteredItems={filteredItems} />
                 )}
