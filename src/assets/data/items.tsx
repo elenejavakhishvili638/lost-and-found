@@ -9,7 +9,6 @@ export const items: Items[] = [
         lost_date: "20.19.2022",
         other: "dfnhirfbwiejfnweijbfiejbfejbf",
         description: "huhkbkjkjbkjbkj",
-
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {

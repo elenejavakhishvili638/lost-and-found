@@ -10,6 +10,7 @@ const FilteredItems = () => {
             <div className='item-wrapper'>
                 {filteredItems.length === 0 ? <p>Come back later, here is nothing</p> : (
                     <>
+                        <button>Closer</button>
                         {filteredItems && filteredItems.map((item) => {
                             const { id, image, title, location, lost_date, other, description } = item
                             // const { color, size, shape, description } = vital_properties
@@ -23,9 +24,6 @@ const FilteredItems = () => {
                                             <h3>{title}</h3>
                                             <h4>{lost_date}</h4>
                                             <div className='vital-properties-box'>
-                                                {/* <p>Color - {color}</p>
-                                                <p>Size - {size}</p>
-                                                <p>Shape - {shape}</p> */}
                                                 <p> {description}</p>
                                             </div>
                                             <h3>{location}</h3>

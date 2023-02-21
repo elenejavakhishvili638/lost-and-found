@@ -31,6 +31,7 @@
   display: grid;
   width: 100%;
   gap: 20px;
+  position: relative;
 }
 
 .lost-item-small-input {
@@ -259,4 +260,59 @@ label {
     padding: 15px 35px;
     font-size: 20px;
   }
+}
+
+.lost-item-image {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Errors */
+.error-icon-div-date {
+  display: flex;
+  position: absolute;
+  left: 110px;
+  top: 83px;
+  color: #eb455f;
+}
+
+.error-icon-div-title {
+  display: flex;
+  position: absolute;
+  left: 55px;
+  color: #eb455f;
+}
+
+.error-icon-title {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  /* position: absolute; */
+}
+
+.error-icon-date {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  /* position: absolute; */
+}
+
+.error-icon-div-image {
+  display: flex;
+  position: absolute;
+  color: #eb455f;
+  left: 120px;
+}
+
+.error-icon-div-image svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.error-icon-div-description {
+  display: flex;
+  position: absolute;
+  color: #eb455f;
+  left: 260px;
 }

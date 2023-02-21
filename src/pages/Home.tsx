@@ -17,7 +17,7 @@ const Home = () => {
     const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
     // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
-    const threshold: number = 100
+    const threshold: number = 800
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -55,8 +55,6 @@ const Home = () => {
                 ) : (
                     <NearYouItems filteredItems={filteredItems} />
                 )}
-                {/* <NearYouItems filteredItems={filteredItems} /> */}
-
                 <Reviews />
 
             </div>

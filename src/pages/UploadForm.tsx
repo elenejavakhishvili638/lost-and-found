@@ -10,15 +10,29 @@ import Textarea from '../components/shared/Textarea';
 import { useAppDispatch, useAppSelector } from '../store';
 import { handleChange, handleImage, handleTextarea, handleSubmition } from "../store/FormSlice"
 import { useNavigate } from 'react-router-dom';
+// import { formValidation } from '../assets/validations/formValidation';
+import { formValidation } from '../assets/validations/FormValidation';
+import { Errors } from '../types/errorTypes';
+import { TbError404 } from 'react-icons/tb';
+import ErrorComp from '../components/shared/ErrorComp';
 
-// interface latLng {
-//     lengitude: number
-//     latitude: number
-// }
+
+interface latLng {
+    lengitude: number
+    latitude: number
+}
+
+interface ImportMeta {
+    env: {
+        VITE_REACT_APP_API_KEY: string;
+        // Add more environment variables as needed
+    };
+}
 
 const UploadForm = () => {
     const ref = useRef<HTMLInputElement>(null);
-    // const [latLng, setLatLng] = useState<latLng | null>(null);
+    const [latLng, setLatLng] = useState<latLng | null>(null);
+    const [error, setError] = useState<Errors>()
     const dispatch = useAppDispatch()
     const [image, setImage] = useState<string>("")
     const values = useAppSelector((state) => state.form.value)
@@ -56,41 +70,54 @@ const UploadForm = () => {
 
     }
 
-    // useEffect(() => {
-    //     // const url: string = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(values.location)}&key=${apiKey}`;
-    //     // fetch(url)
-    //     //     .then((response: Response) => response.json())
-    //     //     .then((data: any) => {
-    //     //         const { lat, lng }: { lat: number, lng: number } = data.results[0].geometry.location;
-    //     //         // console.log(`Latitude: ${lat}, Longitude: ${lng}`);
-    //     //         setLatLng({ latitude: lat, lengitude: lng })
-    //     //     })
-    //     //     .catch((error: Error) => {
-    //     //         console.error('Error:', error);
-    //     //     });
+    useEffect(() => {
+        const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
+        const url: string = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(values.location)}&key=${apiKey}`;
+        fetch(url)
+            .then((response: Response) => response.json())
+            .then((data: any) => {
+                const { lat, lng }: { lat: number, lng: number } = data.results[0].geometry.location;
+                // console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+                setLatLng({ latitude: lat, lengitude: lng })
+            })
+            .catch((error: Error) => {
+                console.error('Error:', error);
+            });
 
-    // }, [latLng, setLatLng])
+    }, [values.location])
 
     const handleLocationSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
 
-        // for(const [key, value] of Object.entries(values)) {
-        //     if ()
-        // }
+        dispatch(handleSubmition({ ...values, id: uuidv4(), image: image, address: { latitude: latLng?.latitude, longitude: latLng?.lengitude } }))
 
-        dispatch(handleSubmition({ ...values, id: uuidv4(), image: image }))
+        console.log(formValidation({ ...values, id: uuidv4(), image: image }))
+        const val = formValidation({ ...values, id: uuidv4(), image: image })
+        setError(val)
+
+        for (const [key, value] of Object.entries(error || {})) {
+            if (value !== "") {
+                return
+            }
+        }
+
+        console.log("fdsfs")
 
         navigate("/items")
 
     };
 
+    // console.log(error)
+
     return (
         <div className='upload-form-container'>
-
             <h3>Try and find what you have lost!</h3>
             <form className='upload-form' onSubmit={handleLocationSubmit}>
                 <div className='form-first-part'>
                     <div className='lost-item'>
+                        {error?.title === "Please add the title!" && (
+                            <ErrorComp className="error-icon-div-title" text={error?.title} />
+                        )}
                         <SmallInput
                             title="Name"
                             type='text'
@@ -98,8 +125,11 @@ const UploadForm = () => {
                             name='title'
                             value={values.title}
                             onChanges={handleChanges}
-                        // onChange={dispatch(handleChange)}
+                            error={error?.title}
                         />
+                        {error?.lost_date === "Please add the date!" && (
+                            <ErrorComp className="error-icon-div-date" text={error?.lost_date} />
+                        )}
                         <SmallInput
                             title="Date of loss"
                             type='date'
@@ -107,17 +137,25 @@ const UploadForm = () => {
                             name='lost_date'
                             value={values.lost_date}
                             onChanges={handleChanges}
+                            error={error?.lost_date}
                         />
                         <div className='lost-item-image'>
                             <input type="file" ref={ref} accept="image/*" onChange={handleImages} />
                             <button type='button' onClick={pickImageHandler}>Upload here</button>
+                            {error?.image === "Please add the picture!" && (
+                                <ErrorComp className="error-icon-div-image" text={error?.image} />
+                            )}
                         </div>
+
                     </div>
                     <div className='form-image'>
                         {image && <img src={image} alt='item' />}
                     </div>
                 </div>
                 <div className="form-second-part">
+                    {error?.location === "Please add the location!" && (
+                        <ErrorComp className="error-icon-div-image" text={error?.location} />
+                    )}
                     <BigInput
                         title="Location"
                         type='text'
@@ -125,34 +163,15 @@ const UploadForm = () => {
                         name='location'
                         value={values.location}
                         onChanges={handleChanges}
+                        error={error?.location}
                     />
-
                     <div className="lost-item-dscription">
                         <h3>Description</h3>
-                        {/* <div className='description-vital-properties'>
-                            <TripleInput
-                                title="Color"
-                                type='text'
-                                className='decription-input'
-                                name=''
-                                value=''
-                            />
-                            <TripleInput
-                                title="Size"
-                                type='text'
-                                className='decription-input'
-                                name=''
-                                value=''
-                            />
-                            <TripleInput
-                                title="Shape"
-                                type='text'
-                                className='decription-input'
-                                name=''
-                                value=''
-                            />
-                        </div> */}
                         <div className='form-third-part'>
+                            {error?.description === "Please add the description!" && (
+
+                                <ErrorComp className="error-icon-div-description" text={error?.description} />
+                            )}
                             <Textarea
                                 className='description-text'
                                 title="Describe with more details"
@@ -162,6 +181,7 @@ const UploadForm = () => {
                                 value={values.description}
                                 onChanges={handleTextareas}
                             />
+
                             <Textarea
                                 className='description-text'
                                 title="Would you like to add something?"
@@ -172,6 +192,7 @@ const UploadForm = () => {
                                 // value=''
                                 onChanges={handleTextareas}
                             />
+
                         </div>
                         <button className='submit-form' type='submit'>Submit the form</button>
                     </div>

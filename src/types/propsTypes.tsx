@@ -1,3 +1,4 @@
+// import { Error } from "./errorTypes"
 import { Items } from "./itemsTypes"
 
 export type inputProps = {
@@ -7,6 +8,7 @@ export type inputProps = {
     name: string
     value: string
     onChanges: (event: React.ChangeEvent<HTMLInputElement>) => void
+    error: string | undefined
 }
 
 export type textareaProps = {
@@ -21,4 +23,9 @@ export type textareaProps = {
 
 export type nearYouProps = {
     filteredItems: Items[]
+}
+
+export type errorProps = {
+    text: string | undefined
+    className: string
 }
