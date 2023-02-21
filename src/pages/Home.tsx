@@ -50,7 +50,12 @@ const Home = () => {
             <div className="main-wrapper-second">
 
                 {isLoading ? (
-                    <p>Please wait locations are loading</p>
+                    // <div className='items-near-you'></div>
+
+                    <div className='items-near-you' style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                    </div>
+
                 ) : (
                     <NearYouItems filteredItems={filteredItems} />
                 )}
@@ -59,7 +64,7 @@ const Home = () => {
                 <Reviews />
 
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -61,7 +61,7 @@ const formSlice = createSlice({
         },
         handleSubmition(state, action: PayloadAction<Items>) {
             // const proxy = new Proxy(state.itemsList);
-            state.itemsList = [...items, action.payload]
+            state.itemsList = [...state.itemsList, action.payload]
             console.log(state.itemsList)
         }
     },

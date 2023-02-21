@@ -8,14 +8,8 @@ export const items: Items[] = [
         title: "pen",
         lost_date: "20.19.2022",
         other: "dfnhirfbwiejfnweijbfiejbfejbf",
-        // vital_properties: {
-        //     color: "yellow",
-        //     size: "small",
-        //     shape: "long",
-        //     description: "string"
-        // },
         description: "huhkbkjkjbkjbkj",
-        // estimated_location: "fnjfnkjfbhjkhfb",
+
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {
@@ -28,14 +22,9 @@ export const items: Items[] = [
         title: "pen",
         lost_date: "20.19.2022",
         other: "dfnhirfbwiejfnweijbfiejbfejbf",
-        // vital_properties: {
-        //     color: "yellow",
-        //     size: "small",
-        //     shape: "long",
-        //     description: "string"
-        // },
+
         description: "huhkbkjkjbkjbkj",
-        // estimated_location: "fnjfnkjfbhjkhfb",
+
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {
@@ -48,14 +37,8 @@ export const items: Items[] = [
         title: "pen",
         lost_date: "20.19.2022",
         other: "dfnhirfbwiejfnweijbfiejbfejbf",
-        // vital_properties: {
-        //     color: "yellow",
-        //     size: "small",
-        //     shape: "long",
-        //     description: "string"
-        // },
         description: "huhkbkjkjbkjbkj",
-        // estimated_location: "fnjfnkjfbhjkhfb",
+
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {
@@ -68,14 +51,8 @@ export const items: Items[] = [
         title: "watch",
         lost_date: "20.19.2022",
         other: "dfnhirfbwiejfnweijbfiejbfejbf",
-        // vital_properties: {
-        //     color: "yellow",
-        //     size: "small",
-        //     shape: "long",
-        //     description: "string"
-        // },
         description: "huhkbkjkjbkjbkj",
-        // estimated_location: "fnjfnkjfbhjkhfb",
+
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {
@@ -88,14 +65,8 @@ export const items: Items[] = [
         title: "pencil",
         lost_date: "20.19.2022",
         other: "dfnhirfbwiejfnweijbfiejbfejbf",
-        // vital_properties: {
-        //     color: "yellow",
-        //     size: "small",
-        //     shape: "long",
-        //     description: "string"
-        // },
         description: "huhkbkjkjbkjbkj",
-        // estimated_location: "fnjfnkjfbhjkhfb",
+
         location: "tbilisi",
         image: "dheiufhdkashkasjh",
         address: {

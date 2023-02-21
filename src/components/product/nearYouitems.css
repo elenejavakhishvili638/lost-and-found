@@ -1,9 +1,5 @@
 .items-near-you {
   margin-top: 2rem;
-  /* background-color: #4d455d8b; */
-  /* background-color: #eee9dad8; */
-  /* padding: 10px; */
-
   background-color: #eee9dad8;
   margin-top: 2rem;
   padding: 20px 0 20px 0;
@@ -55,16 +51,12 @@
     margin: 50px auto;
     color: #443c68;
     text-transform: capitalize;
-    /* align-items: center; */
-    /* justify-content: center; */
   }
 
   .item-container-small {
     display: flex;
     /* align-items: center; */
     justify-content: center;
-    /* width: 500px; */
-    /* margin-left: 25%; */
   }
 
   .small-near {

@@ -204,6 +204,7 @@ label {
     margin-top: 10px;
     border: none;
     background-color: #f0eeed96;
+    font-size: 22px;
   }
 
   .form-image {
@@ -227,6 +228,7 @@ label {
 
   .lost-item-location input {
     height: 70px;
+    font-size: 22px;
   }
 
   .description-vital-properties {
@@ -250,5 +252,11 @@ label {
   .description-text textarea {
     margin-top: 45px;
     height: 200px;
+    font-size: 22px;
+  }
+
+  .submit-form {
+    padding: 15px 35px;
+    font-size: 20px;
   }
 }

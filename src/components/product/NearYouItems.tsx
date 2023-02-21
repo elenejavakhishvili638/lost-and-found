@@ -26,9 +26,6 @@ const NearYouItems: React.FC<nearYouProps> = ({ filteredItems }) => {
                                         <h3>{filteredItems[0].title}</h3>
                                         <h4>{filteredItems[0].lost_date}</h4>
                                         <div className='vital-properties-box'>
-                                            {/* <p>Color - {filteredItems[0].vital_properties.color}</p>
-                                            <p>Size - {filteredItems[0].vital_properties.size}</p>
-                                            <p>Shape - {filteredItems[0].vital_properties.shape}</p> */}
                                             <p> {filteredItems[0].description}</p>
                                         </div>
                                         <h3>{filteredItems[0].location}</h3>
