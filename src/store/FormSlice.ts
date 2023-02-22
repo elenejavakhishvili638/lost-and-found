@@ -63,6 +63,19 @@ const formSlice = createSlice({
             // const proxy = new Proxy(state.itemsList);
             state.itemsList = [...state.itemsList, action.payload]
             console.log(state.itemsList)
+            state.value = {
+                id: "",
+                title: "",
+                lost_date: "",
+                other: "",
+                description: "",
+                location: "",
+                image: "",
+                address: {
+                    longitude: 0,
+                    latitude: 0,
+                }
+            }
         }
     },
 });

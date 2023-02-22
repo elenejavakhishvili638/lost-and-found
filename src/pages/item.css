@@ -5,6 +5,7 @@
   width: 90vw;
   margin-top: 40px;
   color: #443c68;
+  letter-spacing: 1px;
 }
 
 .item-page-title {
@@ -52,10 +53,24 @@
   margin-top: 20px;
 }
 
-.each-item-date,
-.each-item-location {
+.each-item-date {
   display: flex;
   text-transform: capitalize;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.each-item-location p {
+  margin-top: 10px;
+}
+
+.each-item-location span {
+  font-weight: 700;
+}
+
+.each-item-image img {
+  object-fit: cover;
+  height: 225px;
+  transition: all 0.3s linear;
+  width: 100%;
 }

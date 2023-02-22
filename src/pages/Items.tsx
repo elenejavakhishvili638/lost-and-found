@@ -20,7 +20,6 @@ const Items = () => {
                     const { id, image, title, location, lost_date, other, description, address } = item
                     // const { color, size, shape, description } = vital_properties
                     return (
-
                         <div key={id} className="item-container">
                             <Link to={`/item/${id}`} state={{ image, title, location, lost_date, other, description, address }}>
                                 <div className={`${items.length <= 2 ? "item-box small" : "item-box"}`}>

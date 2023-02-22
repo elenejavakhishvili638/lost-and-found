@@ -29,3 +29,11 @@ export type errorProps = {
     text: string | undefined
     className: string
 }
+
+export type mapProps = {
+    zoom: number
+    center: {
+        longitude: number,
+        latitude: number
+    }
+}

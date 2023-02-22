@@ -56,10 +56,13 @@
   padding-left: 5px;
   padding-bottom: 10px;
   background-color: white;
+  word-break: break-all;
+  /* margin-top: 10px; */
 }
 
 .item-box-description h3 {
   color: #443c68;
+  margin-top: 10px;
 }
 
 .item-box-description h4,
@@ -67,6 +70,7 @@
   color: #443c68;
   /* opacity: 0.7; */
   margin-bottom: 5px;
+  margin-top: 10px;
 }
 
 .vital-properties-box {

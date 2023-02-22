@@ -22,13 +22,6 @@ interface latLng {
     latitude: number
 }
 
-// interface ImportMeta {
-//     env: {
-//         VITE_REACT_APP_API_KEY: string;
-
-//     };
-// }
-
 const UploadForm = () => {
     const ref = useRef<HTMLInputElement>(null);
     const [latLng, setLatLng] = useState<latLng | null>(null);
@@ -60,13 +53,6 @@ const UploadForm = () => {
             const fileUrl = URL.createObjectURL(selected);
             dispatch(handleImage(fileUrl))
         }
-
-        // if (selected) {
-        //     console.log(selected)
-        // } else {
-        //     console.log("ssas")
-        // }
-        // console.log(event.target.files)
         if (selected) {
             const reader = new FileReader();
             reader.readAsDataURL(selected);
@@ -218,29 +204,3 @@ export default UploadForm
 
 
 
-
-// const mapRef = useRef();
-
-// useEffect(() => {
-//   new window.ol.Map({
-//     target: mapRef.current.id,
-//     layers: [
-//       new window.ol.layer.Tile({
-//         source: new window.ol.source.OSM(),
-//       }),
-//     ],
-//     view: new window.ol.View({
-//       center: window.ol.proj.fromLonLat([center.lng, center.lat]),
-//       zoom: zoom,
-//     }),
-//   });
-// }, [center, zoom]);
-
-// return (
-//   <div
-//     ref={mapRef}
-//     id="map"
-//     className={`map ${className}`}
-//     style={style}
-//   ></div>
-// );

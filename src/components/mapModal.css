@@ -1,0 +1,7 @@
+.map-container {
+  position: fixed;
+  width: 90vw;
+  /* height: 50%; */
+  background-color: #4d455d86;
+  padding: 20px;
+}
