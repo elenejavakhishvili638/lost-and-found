@@ -34,8 +34,8 @@
 .item-box-image {
   /* display: flex; */
   align-self: center;
-  background-color: beige;
-  border: 1px solid salmon;
+  background-color: #39305341;
+  border: 1px solid #c92c6d;
   width: 100%;
   height: 225px;
   padding-bottom: 10px;
@@ -56,6 +56,10 @@
   padding-left: 5px;
   padding-bottom: 10px;
   background-color: white;
+}
+
+.item-box-description h3 {
+  color: #443c68;
 }
 
 .item-box-description h4,

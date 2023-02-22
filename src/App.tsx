@@ -9,6 +9,7 @@ import About from './pages/About'
 import Items from './pages/Items'
 import UploadForm from './pages/UploadForm'
 import FilteredItems from './pages/FilteredItems'
+import Item from './pages/Item'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path='/items' element={<Items />} />
         <Route path='/upload-product' element={<UploadForm />} />
         <Route path='/filtered-items' element={<FilteredItems />} />
+        <Route path='/item/:id' element={<Item />} />
       </Routes>
       <Footer />
     </Router>

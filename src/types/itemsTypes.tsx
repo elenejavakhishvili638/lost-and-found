@@ -9,7 +9,7 @@ export type Items = {
     // estimated_location?: string
     description: string
     location: string
-    image: string
+    image: string | undefined
     address: {
         longitude: number | undefined,
         latitude: number | undefined

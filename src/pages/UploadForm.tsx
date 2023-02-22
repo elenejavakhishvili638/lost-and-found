@@ -22,12 +22,12 @@ interface latLng {
     latitude: number
 }
 
-interface ImportMeta {
-    env: {
-        VITE_REACT_APP_API_KEY: string;
-        // Add more environment variables as needed
-    };
-}
+// interface ImportMeta {
+//     env: {
+//         VITE_REACT_APP_API_KEY: string;
+
+//     };
+// }
 
 const UploadForm = () => {
     const ref = useRef<HTMLInputElement>(null);
@@ -53,12 +53,19 @@ const UploadForm = () => {
 
     const handleImages = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selected = event.target.files?.[0]
+
         if (selected) {
-            console.log(selected)
-            dispatch(handleImage(selected))
-        } else {
-            console.log("ssas")
+            const formData = new FormData
+            formData.append("selected", selected)
+            const fileUrl = URL.createObjectURL(selected);
+            dispatch(handleImage(fileUrl))
         }
+
+        // if (selected) {
+        //     console.log(selected)
+        // } else {
+        //     console.log("ssas")
+        // }
         // console.log(event.target.files)
         if (selected) {
             const reader = new FileReader();
@@ -68,21 +75,28 @@ const UploadForm = () => {
             };
         }
 
+
     }
 
     useEffect(() => {
         const apiKey = import.meta.env.VITE_REACT_APP_API_KEY
         const url: string = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(values.location)}&key=${apiKey}`;
-        fetch(url)
-            .then((response: Response) => response.json())
-            .then((data: any) => {
+        if (!values.location) {
+            return;
+        }
+        const fetchAddress = async () => {
+            try {
+                const response = await fetch(url)
+                const data = await response.json()
                 const { lat, lng }: { lat: number, lng: number } = data.results[0].geometry.location;
-                // console.log(`Latitude: ${lat}, Longitude: ${lng}`);
                 setLatLng({ latitude: lat, lengitude: lng })
-            })
-            .catch((error: Error) => {
-                console.error('Error:', error);
-            });
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+
+        fetchAddress()
 
     }, [values.location])
 
@@ -101,13 +115,11 @@ const UploadForm = () => {
             }
         }
 
-        console.log("fdsfs")
 
         navigate("/items")
 
     };
 
-    // console.log(error)
 
     return (
         <div className='upload-form-container'>
