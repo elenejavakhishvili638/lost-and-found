@@ -39,7 +39,7 @@ const NearYouItems: React.FC<nearYouProps> = ({ filteredItems }) => {
                             </Link>
                         )
                     }
-                    {/* <img src={map} alt="map" className='near-you-image' /> */}
+
                 </div>
             )}
         </div>

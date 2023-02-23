@@ -20,22 +20,6 @@
   /* max-width: 45em; */
 }
 
-.lost-and-found-container a {
-  /* border: #393053 solid 2px; */
-  background-color: #393053a2;
-  color: aliceblue;
-  padding: 10px 20px;
-  border-radius: 8px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: all 0.3s linear;
-}
-
-.lost-and-found-container a:hover {
-  background-color: #c92c6d;
-}
-
 .filter-by-distance {
   display: flex;
   flex-direction: column;

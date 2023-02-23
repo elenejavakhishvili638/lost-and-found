@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Children, useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import NearYouItems from '../components/product/NearYouItems'
 import UploadProduct from '../components/product/UploadProduct'
@@ -8,6 +8,7 @@ import { useAppSelector, useAppDispatch } from '../store'
 import { setLatitude, setLongitude, calculateDistances } from "../store/NearYouItems"
 import { items } from '../assets/data/items'
 import Loading from '../components/shared/Loading'
+import Button from '../components/shared/Button'
 
 const Home = () => {
 
@@ -35,9 +36,7 @@ const Home = () => {
                     <h3>Whould you like to find things you have lost?</h3>
                     <h3>Or help the ones who have lost ?</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <Link to="/items">
-                        See the items
-                    </Link>
+                    <Button text='See the items' className='home-page-button' to="/items" />
                 </div>
                 <div className='your-products'>
                     <UploadProduct />

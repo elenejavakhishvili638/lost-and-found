@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom"
 import MapModal from '../components/MapModal'
+import Button from '../components/shared/Button'
 import "./item.css"
 
 const Item = () => {
@@ -14,12 +15,9 @@ const Item = () => {
         <div className='item' >
             <div className='item-page-title'>
                 <h1>Lost Item</h1>
-                <button onClick={() => navigate(-1)} >Back to items</button>
+                {/* <button onClick={() => navigate(-1)} >Back to items</button> */}
+                <Button text='Back to items' to='/items' className='home-page-button ' />
             </div>
-
-            {/* {openModal && (
-                <MapModal center={address} zoom={18} />
-            )} */}
             <div className='item-big-screen'>
                 <div>
                     <div className='each-item-image'>

@@ -10,6 +10,11 @@
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 2px 15px;
+  margin-top: 20px;
+  background-color: antiquewhite;
+  color: #393053;
 }
 
 .items-near-you-title {
@@ -48,7 +53,7 @@
   .item-wrapper-small {
     display: grid;
     gap: 50px;
-    margin: 50px auto;
+    margin: 30px auto;
     color: #443c68;
     text-transform: capitalize;
   }

@@ -21,22 +21,6 @@
   /* margin-bottom: 20px; */
 }
 
-.item-page-title button {
-  background-color: #393053a2;
-  color: aliceblue;
-  padding: 8px 13px;
-  border-radius: 8px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: all 0.3s linear;
-  border: none;
-}
-
-.item-page-title button:hover {
-  background-color: #c92c6d;
-}
-
 .each-item-image {
   margin-top: 4rem;
   align-self: center;
@@ -128,8 +112,5 @@
   .map-wrapper {
     display: flex;
     justify-content: center;
-  }
-  .each-item-wrapper {
-    /* min-width: 400px; */
   }
 }

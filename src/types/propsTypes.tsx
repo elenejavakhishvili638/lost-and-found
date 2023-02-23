@@ -39,3 +39,9 @@ export type mapProps = {
         latitude: number
     }
 }
+
+export type buttonProps = {
+    to: string
+    className: string
+    text: string
+}
