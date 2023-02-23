@@ -10,6 +10,7 @@ interface NearYouItemsState {
         longitude: number
     }
     filteredItems: Items[]
+    // threshold: number
 }
 
 interface Location {
@@ -32,14 +33,14 @@ interface LocationPayloadAction {
 }
 
 const initialState: NearYouItemsState = {
-    // latitude: 0,
-    // longitude: 0,
     address: {
         latitude: 0,
         longitude: 0,
     },
-    filteredItems: []
+    filteredItems: [],
+    // threshold: 1000
 }
+
 
 const nearYouItemsSlice = createSlice({
     name: "nearYouItem",
@@ -62,9 +63,11 @@ const nearYouItemsSlice = createSlice({
                 // return threshold !== undefined && distance <= threshold;
                 // return typeof threshold === "number" && distance <= threshold;
             })
-
-
-        }
+        },
+        // setThreshold(state, action: PayloadAction<number>) {
+        //     state.threshold = action.payload
+        //     console.log(state.threshold)
+        // }
     }
 })
 

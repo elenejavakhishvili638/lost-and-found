@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import NearYouItems from '../components/product/NearYouItems'
 import UploadProduct from '../components/product/UploadProduct'
@@ -14,10 +14,10 @@ const Home = () => {
     const dispatch = useAppDispatch()
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const longitude = useAppSelector((state) => state.nearYouItem.address.longitude)
-    const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
-    // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
-    const threshold: number = 800
+    const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
+    const [threshold, setThreshold] = useState<number>(1000)
+    // const threshold = useAppSelector((state) => state.nearYouItem.threshold)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -26,12 +26,7 @@ const Home = () => {
             dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
             setIsLoading(false)
         })
-    }, [isLoading])
-
-
-    // console.log(filteredItems, longitude, latitude, items[0].address)
-
-
+    }, [isLoading, threshold])
 
     return (
         <div className='home-page'>
@@ -53,7 +48,15 @@ const Home = () => {
                 {isLoading ? (
                     <Loading />
                 ) : (
-                    <NearYouItems filteredItems={filteredItems} />
+                    <>
+                        {/* <div className='filter-by-distance'>
+                            <label>Select the distance</label>
+                            <input type="text" value={threshold} onChange={(event) => {
+                                setThreshold(Number(event.target.value))
+                            }} />
+                        </div> */}
+                        <NearYouItems filteredItems={filteredItems} />
+                    </>
                 )}
                 <Reviews />
 

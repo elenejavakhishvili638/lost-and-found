@@ -3,14 +3,21 @@
   width: 90vw;
   color: #443c68;
   font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .item-big-wrapper {
   min-height: 100vh;
 }
 
+.item-title h1 {
+  font-size: 24px;
+}
+
 .item-title p {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .item-wrapper {
@@ -80,6 +87,26 @@
 
 .small {
   max-width: 360px;
+}
+
+.home-page-button2 {
+  text-decoration: none;
+  background-color: #393053a2;
+  color: aliceblue;
+  padding: 8px 13px;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  transition: all 0.3s linear;
+  border: none;
+  width: 100px;
+  text-align: center;
+}
+
+.home-page-button2:hover {
+  background-color: #c92c6da9;
 }
 
 @media (min-width: 992px) {

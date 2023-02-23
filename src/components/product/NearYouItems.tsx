@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppSelector } from '../../store'
+import { useAppDispatch, useAppSelector } from '../../store'
 import "./nearYouitems.css"
 import map from "../../assets/images/lost-and-found-map.png"
 import { nearYouProps } from '../../types/propsTypes'
+import { calculateDistances } from '../../store/NearYouItems'
+import { items } from '../../assets/data/items'
 
 const NearYouItems: React.FC<nearYouProps> = ({ filteredItems }) => {
-    // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
+
+
     return (
         <div className='items-near-you'>
             <div className='items-near-you-title'>
                 <span>Items near you</span>
-                <Link to="/filtered-items">See more</Link>
+                <Link to="/filtered-items" state={{ filteredItems: filteredItems }}>See more</Link>
             </div>
             {filteredItems.length === 0 ? <p className='items-near-you-text'>There is nothing near you</p> : (
                 <div className='item-wrapper-small'>
                     {filteredItems && filteredItems[0] &&
                         (
-                            <div key={filteredItems[0].id} className="item-container-small">
+                            <Link key={filteredItems[0].id} className="item-container-small" to={`/item/${filteredItems[0].id}`} state={{ image: filteredItems[0].image, title: filteredItems[0].title, location: filteredItems[0].location, lost_date: filteredItems[0].lost_date, other: filteredItems[0].other, description: filteredItems[0].description, address: filteredItems[0].address }}>
                                 <div className='item-box small-near'>
                                     <div className='item-box-image'>
                                         <img src={filteredItems[0].image} />
@@ -33,7 +36,7 @@ const NearYouItems: React.FC<nearYouProps> = ({ filteredItems }) => {
                                     </div>
 
                                 </div>
-                            </div>
+                            </Link>
                         )
                     }
                     {/* <img src={map} alt="map" className='near-you-image' /> */}

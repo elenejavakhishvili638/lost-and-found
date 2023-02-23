@@ -12,13 +12,17 @@ const Items = () => {
     return (
         <div className='item-big-wrapper'>
             <div className='item-title'>
-                <h1>Lost items</h1>
-                <p>Can you see anything that is yours?</p>
+                <div>
+                    <h1>Lost items</h1>
+                    <p>Can you see anything that is yours?</p>
+                </div>
+                <Link className='home-page-button2' to="/">Go Back</Link>
             </div>
             <div className='item-wrapper'>
                 {items && items.map((item) => {
                     const { id, image, title, location, lost_date, other, description, address } = item
                     // const { color, size, shape, description } = vital_properties
+                    console.log(other)
                     return (
                         <div key={id} className="item-container">
                             <Link to={`/item/${id}`} state={{ image, title, location, lost_date, other, description, address }}>

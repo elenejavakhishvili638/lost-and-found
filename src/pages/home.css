@@ -36,6 +36,26 @@
   background-color: #c92c6d;
 }
 
+.filter-by-distance {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin: 40px auto 20px;
+  /* align-content: center; */
+  /* justify-content: center; */
+  text-align: center;
+}
+
+.filter-by-distance label {
+  margin-bottom: 10px;
+}
+
+.filter-by-distance input {
+  border: 1px solid #c92c6d;
+  background-color: transparent;
+  padding: 5px;
+}
+
 @media (min-width: 992px) {
   .main-wrapper-first {
     display: grid;
@@ -45,5 +65,12 @@
   .main-wrapper-second {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(360px, 2fr));
+  }
+
+  .filter-by-distance {
+    /* position: absolute;
+    top: 450px;
+    width: 400px;
+    left: 300px; */
   }
 }

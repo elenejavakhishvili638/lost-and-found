@@ -86,7 +86,8 @@ const MapModal: React.FC<mapProps> = ({ center, zoom }) => {
         <div className='map-container'>
             <div
                 ref={mapRef}
-                style={{ width: "100%", height: "400px", backgroundColor: "gray" }}
+                className="map"
+                // style={{ width: "100%", height: "400px", backgroundColor: "gray" }}
                 id="map"
             >
             </div>
