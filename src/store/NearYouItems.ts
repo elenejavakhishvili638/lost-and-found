@@ -3,13 +3,12 @@ import { calculateDistance } from "../assets/calculateDistance";
 import { Items } from "../types/itemsTypes";
 
 interface NearYouItemsState {
-    // latitude: number
-    // longitude: number
     address: {
         latitude: number
         longitude: number
     }
     filteredItems: Items[]
+    // handleClick: () => void
     // threshold: number
 }
 
@@ -32,12 +31,17 @@ interface LocationPayloadAction {
     items: Items[]
 }
 
+// interface functionPayload {
+//     handleClick: () => void
+// }
+
 const initialState: NearYouItemsState = {
     address: {
         latitude: 0,
         longitude: 0,
     },
     filteredItems: [],
+    // handleClick: () => { },
     // threshold: 1000
 }
 
@@ -54,19 +58,20 @@ const nearYouItemsSlice = createSlice({
         },
         calculateDistances(state: NearYouItemsState, action: PayloadAction<LocationPayloadAction>) {
             const { location, items } = action.payload
-            // const distance: number = calculateDistance(location, items)
-            // const threshold = action.payload.threshold
+
             state.filteredItems = items.filter((thing) => {
                 const distance = calculateDistance(location.address, thing)
-                // console.log(distance)
                 return distance <= action.payload.threshold
-                // return threshold !== undefined && distance <= threshold;
-                // return typeof threshold === "number" && distance <= threshold;
             })
         },
         // setThreshold(state, action: PayloadAction<number>) {
         //     state.threshold = action.payload
         //     console.log(state.threshold)
+        // }
+        // handleClick(state, action: PayloadAction<functionPayload>) {
+        //     state.handleClick = action.payload.handleClick
+        //     console.log(action)
+        //     // state.threshold = action.payload
         // }
     }
 })

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { items } from '../assets/data/items'
 import { useAppSelector, useAppDispatch } from '../store'
 // import { setThreshold } from '../store/NearYouItems'
@@ -7,12 +7,27 @@ import { Link, useLocation } from "react-router-dom"
 import "./filteredItems.css"
 import { Items } from '../types/itemsTypes'
 
+
 const FilteredItems = () => {
 
     const location = useLocation()
+    // const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     // const threshold = useAppSelector((state) => state.nearYouItem.threshold)
+    // const dispatch = useAppDispatch()
 
     const { filteredItems } = location.state
+
+    // const [val, setVal] = useState<string>("1000")
+
+    // console.log(val, threshold)
+
+    // const handle = () => {
+    //     console.log("clicked")
+    //     // navigator.geolocation.getCurrentPosition((position) => {   })
+    //     dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
+    //     // dispatch(handleClick({handleClick: handleClicks}))
+
+    // }
 
     return (
         <div className='items-near-you-container'>
@@ -20,9 +35,10 @@ const FilteredItems = () => {
             <div className='item-wrapper'>
                 {/* <div className='filter-by-distance'>
                     <label>Select the distance</label>
-                    <input type="text" onChange={(event) => {
-                        setThreshold(Number(event.target.value))
+                    <input type="number" value={val} onChange={(event) => {
+                        setVal(event.target.value)
                     }} />
+                    <button onClick={() => handle()}>Filter Closer</button>
                 </div> */}
                 {filteredItems && filteredItems.length === 0 ? <p>Come back later, here is nothing</p> : (
                     <>

@@ -1,5 +1,4 @@
-import { Children, useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
+import { useEffect, useState } from 'react'
 import NearYouItems from '../components/product/NearYouItems'
 import UploadProduct from '../components/product/UploadProduct'
 import Reviews from '../components/Reviews'
@@ -18,16 +17,22 @@ const Home = () => {
     const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
     const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     const [threshold, setThreshold] = useState<number>(1000)
-    // const threshold = useAppSelector((state) => state.nearYouItem.threshold)
+    //  const [val, setVal] = useState<string>("1000")
+    // let threshold = useAppSelector((state) => state.nearYouItem.threshold)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             dispatch(setLatitude(position.coords.latitude))
             dispatch(setLongitude(position.coords.longitude))
             dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
+            // dispatch(handleClick({handleClick: handleClicks}))
             setIsLoading(false)
         })
     }, [isLoading, threshold])
+
+    const handleClick = (data: number) => {
+        setThreshold(data)
+    }
 
     return (
         <div className='home-page'>
@@ -54,7 +59,7 @@ const Home = () => {
                                 setThreshold(Number(event.target.value))
                             }} />
                         </div> */}
-                        <NearYouItems filteredItems={filteredItems} />
+                        <NearYouItems filteredItems={filteredItems} threshold={threshold} handleClick={handleClick} />
                     </>
                 )}
                 <Reviews />

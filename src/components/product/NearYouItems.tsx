@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../store'
 import "./nearYouitems.css"
-import map from "../../assets/images/lost-and-found-map.png"
 import { nearYouProps } from '../../types/propsTypes'
-import { calculateDistances } from '../../store/NearYouItems'
-import { items } from '../../assets/data/items'
 
-const NearYouItems: React.FC<nearYouProps> = ({ filteredItems }) => {
+
+const NearYouItems: React.FC<nearYouProps> = ({ filteredItems, threshold, handleClick }) => {
 
 
     return (
         <div className='items-near-you'>
             <div className='items-near-you-title'>
                 <span>Items near you</span>
-                <Link to="/filtered-items" state={{ filteredItems: filteredItems }}>See more</Link>
+                <Link to="/filtered-items" state={{ filteredItems: filteredItems }} >See more</Link>
+                <div className='filter-by-distance'>
+                    <span className='filter-by-distance-span'>Select the distance</span>
+                    <input type="number" className='filter-by-distance-input' value={threshold} onChange={(event) => {
+                        handleClick(Number(event.target.value))
+                    }} />
+
+                </div>
+
             </div>
             {filteredItems.length === 0 ? <p className='items-near-you-text'>There is nothing near you</p> : (
                 <div className='item-wrapper-small'>

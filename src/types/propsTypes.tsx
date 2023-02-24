@@ -23,8 +23,8 @@ export type textareaProps = {
 
 export type nearYouProps = {
     filteredItems: Items[]
-    // handleClick: () => void
-    // threshold: number
+    handleClick: (data: number) => void
+    threshold: number
 }
 
 export type errorProps = {

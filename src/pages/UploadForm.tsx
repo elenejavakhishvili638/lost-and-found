@@ -91,20 +91,32 @@ const UploadForm = () => {
 
         dispatch(handleSubmition({ ...values, id: uuidv4(), image: image, address: { latitude: latLng?.latitude, longitude: latLng?.lengitude } }))
 
-        console.log(formValidation({ ...values, id: uuidv4(), image: image }))
         const val = formValidation({ ...values, id: uuidv4(), image: image })
+
         setError(val)
 
-        for (const [key, value] of Object.entries(error || {})) {
-            if (value !== "") {
-                return
+        let move = true
+        console.log(move)
+        for (const [key, value] of Object.entries(val || {})) {
+            if (value !== "pass") {
+                move = false
+                console.log(move)
+                break
             }
         }
+
+        if (!move) {
+            console.log("pass the validation")
+            return
+        }
+
 
 
         navigate("/items")
 
+
     };
+
 
 
     return (

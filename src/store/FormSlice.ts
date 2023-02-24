@@ -61,8 +61,8 @@ const formSlice = createSlice({
         },
         handleSubmition(state, action: PayloadAction<Items>) {
             // const proxy = new Proxy(state.itemsList);
-            state.itemsList = [...state.itemsList, action.payload]
-            console.log(state.itemsList)
+            state.itemsList = [action.payload, ...state.itemsList]
+            // console.log(state.itemsList)
             state.value = {
                 id: "",
                 title: "",

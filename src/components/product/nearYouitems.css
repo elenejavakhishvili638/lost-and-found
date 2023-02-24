@@ -12,7 +12,8 @@
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   padding: 2px 15px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: antiquewhite;
   color: #393053;
 }
@@ -43,6 +44,25 @@
   margin: 1rem 1rem;
 }
 
+.filter-by-distance {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* width: 70vw; */
+  margin: 0px 0;
+  /* text-align: center; */
+}
+
+/* .filter-by-distance-span {
+  margin: 20px 0;
+} */
+
+.filter-by-distance-input {
+  border: 1px solid #c92c6d;
+  background-color: transparent;
+  padding: 5px;
+  margin-left: 10px;
+}
+
 @media (min-width: 992px) {
   .near-you-image {
     height: 300px;
@@ -66,5 +86,12 @@
 
   .small-near {
     width: 450px;
+  }
+
+  .filter-by-distance {
+    /* position: absolute;
+    top: 450px;
+    width: 400px;
+    left: 300px; */
   }
 }

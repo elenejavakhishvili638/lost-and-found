@@ -9,7 +9,7 @@ import Button from '../components/shared/Button'
 const Items = () => {
 
     const items = useAppSelector((state) => state.form.itemsList)
-    console.log(items)
+    // console.log(items)
     return (
         <div className='item-big-wrapper'>
             <div className='item-title'>
@@ -24,7 +24,7 @@ const Items = () => {
                 {items && items.map((item) => {
                     const { id, image, title, location, lost_date, other, description, address } = item
                     // const { color, size, shape, description } = vital_properties
-                    console.log(other)
+                    // console.log(other)
                     return (
                         <div key={id} className="item-container">
                             <Link to={`/item/${id}`} state={{ image, title, location, lost_date, other, description, address }}>
