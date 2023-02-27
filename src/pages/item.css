@@ -7,6 +7,7 @@
   color: #443c68;
   letter-spacing: 1px;
   min-height: 90vh;
+  margin-bottom: 40px;
 }
 
 .item-page-title {
@@ -82,6 +83,7 @@
     width: 95vw;
     margin: 0 auto;
     margin-top: 4rem;
+    margin-bottom: 40px;
   }
 
   .item-big-screen {

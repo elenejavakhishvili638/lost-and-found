@@ -36,6 +36,21 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 0 5 10px 5px;
   /* max-width: 360px; */
+  max-height: 410px;
+  overflow-y: scroll;
+}
+
+.item-box::-webkit-scrollbar {
+  width: 5px;
+}
+.item-box::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  /* border-radius: 5px; */
+}
+.item-box::-webkit-scrollbar-thumb {
+  /* border-radius: 5px; */
+  /* -webkit-box-shadow: inset 0 0 6px #9c194f; */
+  background-color: #c92c6dd1;
 }
 
 .item-box-image {
@@ -63,7 +78,8 @@
   padding-left: 5px;
   padding-bottom: 10px;
   background-color: white;
-  word-break: break-all;
+  word-break: normal;
+  padding: 0px 10px;
   /* margin-top: 10px; */
 }
 

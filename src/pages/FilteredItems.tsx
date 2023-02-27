@@ -40,7 +40,7 @@ const FilteredItems = () => {
                     }} />
                     <button onClick={() => handle()}>Filter Closer</button>
                 </div> */}
-                {filteredItems && filteredItems.length === 0 ? <p>Come back later, here is nothing</p> : (
+                {filteredItems && filteredItems.length === 0 ? <p className='empty-page-text'>Come back later, here is nothing!</p> : (
                     <>
                         {filteredItems && filteredItems.map((item: Items) => {
                             const { id, image, title, location, lost_date, other, description, address } = item

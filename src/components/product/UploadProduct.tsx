@@ -7,7 +7,7 @@ const UploadProduct = () => {
         <div className='upload-product-container'>
             <div className='upload-product-wrapper'>
                 <h3>Did you lose something? <br />
-                    <Link to="/upload-product">Click here  </Link> to fill out the form
+                    <Link to="/upload-product">Click here</Link> to fill out the form
                     and find where it is.
                 </h3>
             </div>

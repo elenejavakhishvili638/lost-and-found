@@ -10,8 +10,8 @@ const NearYouItems: React.FC<nearYouProps> = ({ filteredItems, threshold, handle
     return (
         <div className='items-near-you'>
             <div className='items-near-you-title'>
-                <span>Items near you</span>
-                <Link to="/filtered-items" state={{ filteredItems: filteredItems }} >See more</Link>
+                {/* <span>Items near you</span> */}
+                <Link to="/filtered-items" state={{ filteredItems: filteredItems }} >Items near you</Link>
                 <div className='filter-by-distance'>
                     <span className='filter-by-distance-span'>Select the distance</span>
                     <input type="number" className='filter-by-distance-input' value={threshold} onChange={(event) => {

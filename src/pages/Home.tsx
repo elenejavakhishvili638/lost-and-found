@@ -52,15 +52,7 @@ const Home = () => {
                 {isLoading ? (
                     <Loading />
                 ) : (
-                    <>
-                        {/* <div className='filter-by-distance'>
-                            <label>Select the distance</label>
-                            <input type="text" value={threshold} onChange={(event) => {
-                                setThreshold(Number(event.target.value))
-                            }} />
-                        </div> */}
-                        <NearYouItems filteredItems={filteredItems} threshold={threshold} handleClick={handleClick} />
-                    </>
+                    <NearYouItems filteredItems={filteredItems} threshold={threshold} handleClick={handleClick} />
                 )}
                 <Reviews />
 

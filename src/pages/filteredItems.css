@@ -26,3 +26,9 @@
 .home-page-button:hover {
   background-color: #c92c6d;
 }
+
+.empty-page-text {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
