@@ -59,25 +59,3 @@ const Home = () => {
 }
 
 export default Home
-
-
-
-        // const fetchGeoLocation = async () => {
-        //     try {
-        //         console.log(isLoading)
-        //         const position: GeolocationPosition = await new Promise((resolve, reject) => {
-        //             navigator.geolocation.getCurrentPosition(resolve, reject)
-        //         })
-        //         dispatch(setLatitude(position.coords.latitude))
-        //         dispatch(setLongitude(position.coords.longitude))
-        //         dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
-        //         setIsLoading(false)
-        //         console.log(isLoading)
-        //     }
-        //     catch (error) {
-        //         console.log(error)
-        //     }
-        // }
-        // console.log(isLoading)
-
-             // fetchGeoLocation()
