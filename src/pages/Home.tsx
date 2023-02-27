@@ -17,15 +17,12 @@ const Home = () => {
     const latitude = useAppSelector((state) => state.nearYouItem.address.latitude)
     const filteredItems = useAppSelector((state) => state.nearYouItem.filteredItems)
     const [threshold, setThreshold] = useState<number>(1000)
-    //  const [val, setVal] = useState<string>("1000")
-    // let threshold = useAppSelector((state) => state.nearYouItem.threshold)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             dispatch(setLatitude(position.coords.latitude))
             dispatch(setLongitude(position.coords.longitude))
             dispatch(calculateDistances({ items: items, threshold, location: { address: { latitude, longitude } } }))
-            // dispatch(handleClick({handleClick: handleClicks}))
             setIsLoading(false)
         })
     }, [isLoading, threshold])
