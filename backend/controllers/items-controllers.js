@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
 
 const items = [
@@ -49,5 +50,36 @@ const getItemByUserId = (req, res, next) => {
   res.json({ user });
 };
 
+const createItem = (req, res, next) => {
+  const {
+    id,
+    title,
+    lost_date,
+    description,
+    other,
+    location,
+    image,
+    address,
+    user,
+  } = req.body;
+
+  const newItem = {
+    id: uuidv4(),
+    title,
+    lost_date,
+    location,
+    description,
+    other,
+    image,
+    address,
+    user,
+  };
+  let newItemList = [newItem, ...items];
+  console.log(newItemList);
+  //   items.push(newItem);
+  res.status(201).json({ item: newItem });
+};
+
 exports.getItemById = getItemById;
 exports.getItemByUserId = getItemByUserId;
+exports.createItem = createItem;
