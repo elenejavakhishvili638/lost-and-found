@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const HttpError = require("./models/error");
 
 const itemsRoutes = require("./routes/items-routes");
 
@@ -9,6 +10,12 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/lost-items", itemsRoutes);
+
+app.use((req, res, next) => {
+  const error = new HttpError("Could not find this route", 404);
+  // next(error);
+  throw error;
+});
 
 app.use((error, req, res, next) => {
   if (res.headerSent) {

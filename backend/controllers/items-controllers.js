@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
 
-const items = [
+let items = [
   {
     id: "i1",
     title: "pen",
@@ -74,12 +74,27 @@ const createItem = (req, res, next) => {
     address,
     user,
   };
-  let newItemList = [newItem, ...items];
-  console.log(newItemList);
+  items = [newItem, ...items];
+  //   console.log(newItemList);
   //   items.push(newItem);
   res.status(201).json({ item: newItem });
+};
+
+const deleteItem = (req, res, next) => {
+  const itemId = req.params.itemId;
+  items = items.filter((item) => item.id !== itemId);
+
+  //   if (!item) {
+  //     const error = new HttpError("Could not find an item.", 404);
+  //     return next(error);
+  //     // return res.status(404).json({ message: "Could not find an item." });
+  //   }
+
+  //   console.log(item);
+  res.status(200).json({ message: "Deleted item." });
 };
 
 exports.getItemById = getItemById;
 exports.getItemByUserId = getItemByUserId;
 exports.createItem = createItem;
+exports.deleteItem = deleteItem;
