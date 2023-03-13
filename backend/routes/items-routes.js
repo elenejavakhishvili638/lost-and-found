@@ -1,4 +1,6 @@
 const express = require("express");
+const { check } = require("express-validator");
+
 const {
   getItemById,
   getItemByUserId,
@@ -15,7 +17,16 @@ router.get("/:itemId", getItemById);
 
 router.get("/user/:userId", getItemByUserId);
 
-router.post("/", createItem);
+router.post(
+  "/upload-product",
+  [
+    check("title").not().isEmpty(),
+    check("lost_date").not().isEmpty(),
+    check("description").isLength({ min: 5 }),
+    check("location").not().isEmpty(),
+  ],
+  createItem
+);
 
 router.delete("/:itemId", deleteItem);
 

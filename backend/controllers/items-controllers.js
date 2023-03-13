@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
+const { validationResult } = require("express-validator");
 
 let itemList = [
   {
@@ -60,8 +61,12 @@ const getItemByUserId = (req, res, next) => {
 };
 
 const createItem = (req, res, next) => {
+  const errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    throw new HttpError("Invalid inputs passed, please check your data", 422);
+  }
   const {
-    id,
     title,
     lost_date,
     description,
@@ -83,7 +88,7 @@ const createItem = (req, res, next) => {
     address,
     user,
   };
-  itemList = [newItem, ...items];
+  itemList = [newItem, ...itemList];
   //   console.log(newItemList);
   //   items.push(newItem);
   res.status(201).json({ item: newItem });
@@ -91,6 +96,11 @@ const createItem = (req, res, next) => {
 
 const deleteItem = (req, res, next) => {
   const itemId = req.params.itemId;
+
+  if (!itemList.find((item) => item.id === itemId)) {
+    throw new HttpError("Could not find item for that id.", 404);
+  }
+
   itemList = itemList.filter((item) => item.id !== itemId);
 
   //   if (!item) {
