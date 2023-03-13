@@ -4,9 +4,12 @@ const {
   getItemByUserId,
   createItem,
   deleteItem,
+  getItems,
 } = require("../controllers/items-controllers");
 
 const router = express.Router();
+
+router.get("/list", getItems);
 
 router.get("/:itemId", getItemById);
 

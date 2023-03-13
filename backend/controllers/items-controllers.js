@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
 
-let items = [
+let itemList = [
   {
     id: "i1",
     title: "pen",
@@ -18,9 +18,18 @@ let items = [
   },
 ];
 
+const getItems = (req, res, next) => {
+  if (itemList.length === 0) {
+    const error = new HttpError("Could not find an item.", 404);
+    return next(error);
+  }
+
+  res.status(201).json(itemList);
+};
+
 const getItemById = (req, res, next) => {
   const itemId = req.params.itemId;
-  const item = items.find((item) => {
+  const item = itemList.find((item) => {
     return item.id === itemId;
   });
 
@@ -36,18 +45,18 @@ const getItemById = (req, res, next) => {
 
 const getItemByUserId = (req, res, next) => {
   const userId = req.params.userId;
-  const user = items.find((item) => {
+  const items = itemList.filter((item) => {
     return item.user === userId;
   });
 
-  if (!user) {
+  if (!items || items.length === 0) {
     const error = new HttpError("Could not find an user.", 404);
 
     return next(error);
     // return res.status(404).json({ message: "Could not find an user." });
   }
 
-  res.json({ user });
+  res.json({ items });
 };
 
 const createItem = (req, res, next) => {
@@ -74,7 +83,7 @@ const createItem = (req, res, next) => {
     address,
     user,
   };
-  items = [newItem, ...items];
+  itemList = [newItem, ...items];
   //   console.log(newItemList);
   //   items.push(newItem);
   res.status(201).json({ item: newItem });
@@ -82,7 +91,7 @@ const createItem = (req, res, next) => {
 
 const deleteItem = (req, res, next) => {
   const itemId = req.params.itemId;
-  items = items.filter((item) => item.id !== itemId);
+  itemList = itemList.filter((item) => item.id !== itemId);
 
   //   if (!item) {
   //     const error = new HttpError("Could not find an item.", 404);
@@ -98,3 +107,4 @@ exports.getItemById = getItemById;
 exports.getItemByUserId = getItemByUserId;
 exports.createItem = createItem;
 exports.deleteItem = deleteItem;
+exports.getItems = getItems;
