@@ -9,10 +9,10 @@ const itemSchema = new Schema({
   location: { type: String, required: true },
   image: { type: String, required: true },
   other: { type: String },
-  //   address: {
-  //     longitude: { type: Number, required: true },
-  //     latitude: { type: Number, required: true },
-  //   },
+  // address: {
+  //   longitude: { type: Number, required: true },
+  //   latitude: { type: Number, required: true },
+  // },
   user: { type: String, required: true },
 });
 

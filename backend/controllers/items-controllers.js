@@ -4,37 +4,46 @@ const { validationResult } = require("express-validator");
 
 const Item = require("../models/item");
 
-let itemList = [
-  {
-    id: "i1",
-    title: "pen",
-    lost_date: "20.19.2022",
-    other: "dfnhirfbwiejfnweijbfiejbfejbf",
-    description: "huhkbkjkjbkjbkj",
-    location: "tbilisi",
-    image: "dheiufhdkashkasjh",
-    address: {
-      longitude: 44.7171335,
-      latitude: 41.9389861,
-    },
-    user: "u1",
-  },
-];
+// let itemList = [
+//   {
+//     id: "i1",
+//     title: "pen",
+//     lost_date: "20.19.2022",
+//     other: "dfnhirfbwiejfnweijbfiejbfejbf",
+//     description: "huhkbkjkjbkjbkj",
+//     location: "tbilisi",
+//     image: "dheiufhdkashkasjh",
+//     address: {
+//       longitude: 44.7171335,
+//       latitude: 41.9389861,
+//     },
+//     user: "u1",
+//   },
+// ];
 
-const getItems = (req, res, next) => {
-  if (itemList.length === 0) {
-    const error = new HttpError("Could not find an item.", 404);
+const getItems = async (req, res, next) => {
+  // if (itemList.length === 0) {
+  //   const error = new HttpError("Could not find an item.", 404);
+  //   return next(error);
+  // }
+
+  let items;
+
+  try {
+    items = await Item.find();
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not find any items.",
+      500
+    );
     return next(error);
   }
 
-  res.status(201).json(itemList);
+  res.status(201).json(items);
 };
 
 const getItemById = async (req, res, next) => {
   const itemId = req.params.itemId;
-  // const foundItem = itemList.find((item) => {
-  //   return item.id === itemId;
-  // });
 
   let foundItem;
   try {
@@ -50,7 +59,6 @@ const getItemById = async (req, res, next) => {
   if (!foundItem) {
     const error = new HttpError("Could not find an item.", 404);
     return next(error);
-    // return res.status(404).json({ message: "Could not find an item." });
   }
 
   console.log(foundItem);
@@ -59,9 +67,6 @@ const getItemById = async (req, res, next) => {
 
 const getItemByUserId = async (req, res, next) => {
   const userId = req.params.userId;
-  // const items = itemList.filter((item) => {
-  //   return item.user === userId;
-  // });
 
   let items;
   try {
@@ -79,10 +84,7 @@ const getItemByUserId = async (req, res, next) => {
     const error = new HttpError("Could not find an user.", 404);
 
     return next(error);
-    // return res.status(404).json({ message: "Could not find an user." });
   }
-
-  // console.log();
   res.json({
     items: (await items).map((item) => item.toObject({ getters: true })),
   });
