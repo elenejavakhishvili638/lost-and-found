@@ -30,11 +30,22 @@ const getItems = (req, res, next) => {
   res.status(201).json(itemList);
 };
 
-const getItemById = (req, res, next) => {
+const getItemById = async (req, res, next) => {
   const itemId = req.params.itemId;
-  const foundItem = itemList.find((item) => {
-    return item.id === itemId;
-  });
+  // const foundItem = itemList.find((item) => {
+  //   return item.id === itemId;
+  // });
+
+  let foundItem;
+  try {
+    foundItem = await Item.findById(itemId);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not find an item.",
+      500
+    );
+    return next(error);
+  }
 
   if (!foundItem) {
     const error = new HttpError("Could not find an item.", 404);
@@ -43,14 +54,26 @@ const getItemById = (req, res, next) => {
   }
 
   console.log(foundItem);
-  res.json({ foundItem });
+  res.json({ foundItem: foundItem.toObject({ getters: true }) });
 };
 
-const getItemByUserId = (req, res, next) => {
+const getItemByUserId = async (req, res, next) => {
   const userId = req.params.userId;
-  const items = itemList.filter((item) => {
-    return item.user === userId;
-  });
+  // const items = itemList.filter((item) => {
+  //   return item.user === userId;
+  // });
+
+  let items;
+  try {
+    items = Item.find({ user: userId });
+  } catch (err) {
+    const error = new HttpError(
+      "Could not find an item, something went wrong",
+      500
+    );
+
+    return next(error);
+  }
 
   if (!items || items.length === 0) {
     const error = new HttpError("Could not find an user.", 404);
@@ -59,7 +82,10 @@ const getItemByUserId = (req, res, next) => {
     // return res.status(404).json({ message: "Could not find an user." });
   }
 
-  res.json({ items });
+  // console.log();
+  res.json({
+    items: (await items).map((item) => item.toObject({ getters: true })),
+  });
 };
 
 const createItem = async (req, res, next) => {
@@ -114,22 +140,51 @@ const createItem = async (req, res, next) => {
   res.status(201).json({ item: newItem });
 };
 
-const deleteItem = (req, res, next) => {
+const deleteItem = async (req, res, next) => {
+  // let item;
+  // try {
+  //   item = await Item.findById(itemId);
+  // } catch (err) {
+  //   const error = new HttpError(
+  //     "Something went wrong, could not delete place.",
+  //     500
+  //   );
+
+  //   return next(error);
+  // }
+
+  // try {
+  //   console.log(item);
+  //   await item.remove();
+  //   console.log("Item deleted successfully");
+  // } catch (err) {
+  //   console.log("Error deleting item:", err);
+  //   const error = new HttpError(
+  //     "Something went wrong could not delete place.",
+  //     500
+  //   );
+  //   return next(error);
+  // }
+  // res.status(200).json({ message: "Deleted item." });
+
   const itemId = req.params.itemId;
 
-  if (!itemList.find((item) => item.id === itemId)) {
-    throw new HttpError("Could not find item for that id.", 404);
+  try {
+    const deletedItem = await Item.findByIdAndDelete(itemId);
+    if (!deletedItem) {
+      const error = new HttpError("Item not found.", 404);
+      return next(error);
+    }
+    console.log("Item deleted successfully");
+  } catch (err) {
+    console.log("Error deleting item:", err);
+    const error = new HttpError(
+      "Something went wrong could not delete place.",
+      500
+    );
+    return next(error);
   }
 
-  itemList = itemList.filter((item) => item.id !== itemId);
-
-  //   if (!item) {
-  //     const error = new HttpError("Could not find an item.", 404);
-  //     return next(error);
-  //     // return res.status(404).json({ message: "Could not find an item." });
-  //   }
-
-  //   console.log(item);
   res.status(200).json({ message: "Deleted item." });
 };
 
