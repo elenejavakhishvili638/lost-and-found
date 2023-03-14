@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const HttpError = require("./models/error");
+const mongoose = require("mongoose");
 
 const itemsRoutes = require("./routes/items-routes");
 
@@ -29,4 +30,11 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occured!" });
 });
 
-app.listen(5000);
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xrkkl.mongodb.net/items?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    app.listen(5000);
+  })
+  .catch((error) => console.log(error));
