@@ -67,6 +67,7 @@
 .each-item-location span {
   font-weight: 700;
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 .each-item-image img {

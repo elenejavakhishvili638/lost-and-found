@@ -89,7 +89,6 @@ const UploadForm = () => {
     const handleLocationSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
 
-        dispatch(handleSubmition({ ...values, id: uuidv4(), image: image, address: { latitude: latLng?.latitude, longitude: latLng?.lengitude } }))
 
         const val = formValidation({ ...values, id: uuidv4(), image: image })
 
@@ -112,6 +111,7 @@ const UploadForm = () => {
 
 
 
+        dispatch(handleSubmition({ ...values, id: uuidv4(), image: image, address: { latitude: latLng?.latitude, longitude: latLng?.lengitude } }))
         navigate("/items")
 
 
