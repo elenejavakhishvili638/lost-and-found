@@ -2,6 +2,8 @@ const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
 const { validationResult } = require("express-validator");
 
+const Item = require("../models/item");
+
 let itemList = [
   {
     id: "i1",
@@ -30,18 +32,18 @@ const getItems = (req, res, next) => {
 
 const getItemById = (req, res, next) => {
   const itemId = req.params.itemId;
-  const item = itemList.find((item) => {
+  const foundItem = itemList.find((item) => {
     return item.id === itemId;
   });
 
-  if (!item) {
+  if (!foundItem) {
     const error = new HttpError("Could not find an item.", 404);
     return next(error);
     // return res.status(404).json({ message: "Could not find an item." });
   }
 
-  console.log(item);
-  res.json({ item });
+  console.log(foundItem);
+  res.json({ foundItem });
 };
 
 const getItemByUserId = (req, res, next) => {
@@ -60,7 +62,7 @@ const getItemByUserId = (req, res, next) => {
   res.json({ items });
 };
 
-const createItem = (req, res, next) => {
+const createItem = async (req, res, next) => {
   const errors = validationResult(req);
   console.log(errors);
   if (!errors.isEmpty()) {
@@ -73,24 +75,42 @@ const createItem = (req, res, next) => {
     other,
     location,
     image,
-    address,
+    // address,
     user,
   } = req.body;
 
-  const newItem = {
-    id: uuidv4(),
+  // const newItem = {
+  //   id: uuidv4(),
+  //   title,
+  //   lost_date,
+  //   location,
+  //   description,
+  //   other,
+  //   image,
+  //   address,
+  //   user,
+  // };
+
+  const newItem = new Item({
     title,
     lost_date,
     location,
     description,
     other,
     image,
-    address,
+    // address,
     user,
-  };
-  itemList = [newItem, ...itemList];
+  });
+
+  // itemList = [newItem, ...itemList];
   //   console.log(newItemList);
   //   items.push(newItem);
+  try {
+    await newItem.save();
+  } catch (error) {
+    const err = new HttpError("Creating item failed, please try again", 500);
+    return next(err);
+  }
   res.status(201).json({ item: newItem });
 };
 
