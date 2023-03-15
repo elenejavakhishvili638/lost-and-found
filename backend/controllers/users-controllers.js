@@ -3,7 +3,7 @@ const HttpError = require("../models/error");
 
 const User = require("../models/user");
 
-const { validationResult } = require("express-validator");
+// const { validationResult } = require("express-validator");
 
 let users = [
   {
@@ -14,10 +14,22 @@ let users = [
   },
 ];
 
-const loginUser = (req, res, next) => {
+const loginUser = async (req, res, next) => {
   const { user_name, password } = req.body;
 
-  const foundUser = users.find((user) => user.user_name === user_name);
+  // const foundUser = users.find((user) => user.user_name === user_name);
+
+  let foundUser;
+
+  try {
+    foundUser = await User.findOne({ user_name: user_name });
+  } catch (err) {
+    const error = new HttpError(
+      "Logging in failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
 
   if (!foundUser || foundUser.password !== password) {
     const error = new HttpError("Could not find an user.", 401);
