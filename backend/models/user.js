@@ -13,6 +13,7 @@ const userSchema = new Schema({
     index: true,
   },
   password: { type: String, required: true, minlength: 5 },
+  items: [{ type: mongoose.Types.ObjectId, required: true, ref: "Item" }],
 });
 
 // userSchema.plugin(uniqueValidator);

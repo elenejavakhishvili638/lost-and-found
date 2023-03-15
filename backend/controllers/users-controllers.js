@@ -5,14 +5,14 @@ const User = require("../models/user");
 
 // const { validationResult } = require("express-validator");
 
-let users = [
-  {
-    id: "u1",
-    user_name: "elene",
-    password: "123",
-    items: 1,
-  },
-];
+// let users = [
+//   {
+//     id: "u1",
+//     user_name: "elene",
+//     password: "123",
+//     items: 1,
+//   },
+// ];
 
 const loginUser = async (req, res, next) => {
   const { user_name, password } = req.body;
@@ -76,6 +76,7 @@ const signupUser = async (req, res, next) => {
   const newUser = new User({
     user_name,
     password,
+    items: [],
   });
 
   try {

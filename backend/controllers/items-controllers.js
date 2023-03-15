@@ -2,6 +2,9 @@ const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
 const { validationResult } = require("express-validator");
 
+const mongoose = require("mongoose");
+const User = require("../models/user");
+
 const Item = require("../models/item");
 
 // let itemList = [
@@ -22,11 +25,6 @@ const Item = require("../models/item");
 // ];
 
 const getItems = async (req, res, next) => {
-  // if (itemList.length === 0) {
-  //   const error = new HttpError("Could not find an item.", 404);
-  //   return next(error);
-  // }
-
   let items;
 
   try {
@@ -68,6 +66,8 @@ const getItemById = async (req, res, next) => {
 const getItemByUserId = async (req, res, next) => {
   const userId = req.params.userId;
 
+  console.log(userId);
+
   let items;
   try {
     items = Item.find({ user: userId });
@@ -107,18 +107,6 @@ const createItem = async (req, res, next) => {
     user,
   } = req.body;
 
-  // const newItem = {
-  //   id: uuidv4(),
-  //   title,
-  //   lost_date,
-  //   location,
-  //   description,
-  //   other,
-  //   image,
-  //   address,
-  //   user,
-  // };
-
   const newItem = new Item({
     title,
     lost_date,
@@ -130,12 +118,32 @@ const createItem = async (req, res, next) => {
     user,
   });
 
-  // itemList = [newItem, ...itemList];
-  //   console.log(newItemList);
-  //   items.push(newItem);
+  let creator;
+
   try {
-    await newItem.save();
+    creator = await User.findById(user);
+  } catch (err) {
+    const error = new HttpError("Creating item failed, please try again.", 500);
+    return next(error);
+  }
+
+  if (!creator) {
+    const error = new HttpError("Could not find user for provided id", 404);
+    return next(error);
+  }
+
+  console.log(creator);
+
+  try {
+    // await newItem.save();
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await newItem.save({ session: session });
+    creator.items.push(newItem);
+    await creator.save({ session: session });
+    await session.commitTransaction();
   } catch (error) {
+    console.log(error);
     const err = new HttpError("Creating item failed, please try again", 500);
     return next(err);
   }
@@ -143,40 +151,36 @@ const createItem = async (req, res, next) => {
 };
 
 const deleteItem = async (req, res, next) => {
-  // let item;
-  // try {
-  //   item = await Item.findById(itemId);
-  // } catch (err) {
-  //   const error = new HttpError(
-  //     "Something went wrong, could not delete place.",
-  //     500
-  //   );
-
-  //   return next(error);
-  // }
-
-  // try {
-  //   console.log(item);
-  //   await item.remove();
-  //   console.log("Item deleted successfully");
-  // } catch (err) {
-  //   console.log("Error deleting item:", err);
-  //   const error = new HttpError(
-  //     "Something went wrong could not delete place.",
-  //     500
-  //   );
-  //   return next(error);
-  // }
-  // res.status(200).json({ message: "Deleted item." });
-
   const itemId = req.params.itemId;
 
+  // console.log("id", req.params);
+
+  let item;
   try {
-    const deletedItem = await Item.findByIdAndDelete(itemId);
-    if (!deletedItem) {
-      const error = new HttpError("Item not found.", 404);
-      return next(error);
-    }
+    item = await Item.findById(itemId).populate("user");
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not delete place.",
+      500
+    );
+
+    return next(error);
+  }
+
+  if (!item) {
+    const error = new HttpError("Could not find an item for this id.", 404);
+    return next(error);
+  }
+
+  console.log(item);
+  try {
+    // console.log(item);
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await item.deleteOne({ session: session });
+    item.user.items.pull(item);
+    await item.user.save({ session: session });
+    await session.commitTransaction();
     console.log("Item deleted successfully");
   } catch (err) {
     console.log("Error deleting item:", err);
@@ -186,8 +190,25 @@ const deleteItem = async (req, res, next) => {
     );
     return next(error);
   }
-
   res.status(200).json({ message: "Deleted item." });
+
+  // try {
+  //   const deletedItem = await Item.findByIdAndDelete(itemId);
+  //   if (!deletedItem) {
+  //     const error = new HttpError("Item not found.", 404);
+  //     return next(error);
+  //   }
+  //   console.log("Item deleted successfully");
+  // } catch (err) {
+  //   console.log("Error deleting item:", err);
+  //   const error = new HttpError(
+  //     "Something went wrong could not delete place.",
+  //     500
+  //   );
+  //   return next(error);
+  // }
+
+  // res.status(200).json({ message: "Deleted item." });
 };
 
 exports.getItemById = getItemById;
