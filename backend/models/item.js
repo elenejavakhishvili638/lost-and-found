@@ -13,7 +13,7 @@ const itemSchema = new Schema({
   //   longitude: { type: Number, required: true },
   //   latitude: { type: Number, required: true },
   // },
-  user: { type: String, required: true },
+  user: { type: mongoose.Types.ObjectId, required: true, ref: "User" },
 });
 
 module.exports = mongoose.model("Item", itemSchema);
