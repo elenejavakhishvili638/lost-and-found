@@ -1,6 +1,8 @@
 const { v4: uuidv4 } = require("uuid");
 const HttpError = require("../models/error");
 
+const User = require("../models/user");
+
 const { validationResult } = require("express-validator");
 
 let users = [
@@ -17,7 +19,6 @@ const loginUser = (req, res, next) => {
 
   const foundUser = users.find((user) => user.user_name === user_name);
 
-  //   console.log(foundUser);
   if (!foundUser || foundUser.password !== password) {
     const error = new HttpError("Could not find an user.", 401);
 
@@ -27,34 +28,53 @@ const loginUser = (req, res, next) => {
   res.json({ message: "Logged in" });
 };
 
-const signupUser = (req, res, next) => {
-  const errors = validationResult(req);
+const signupUser = async (req, res, next) => {
+  // const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    throw new HttpError("Invalid inputs passed, please check your data", 422);
-  }
+  // if (!errors.isEmpty()) {
+  //   const error = new HttpError(
+  //     "Invalid inputs passed, please check your data",
+  //     422
+  //   );
+
+  //   return next(error);
+  // }
 
   const { user_name, password } = req.body;
 
-  const existingUser = users.find((user) => user.user_name === user_name);
+  let existingUser;
+
+  try {
+    existingUser = await User.findOne({ user_name: user_name });
+    // console.log(existingUser);
+  } catch (err) {
+    // console.log(err);
+    const error = new HttpError(
+      "Signing up failed, please try again later.",
+      500
+    );
+    return next(error);
+  }
 
   if (existingUser) {
     const error = new HttpError("User already exists", 422);
     return next(error);
   }
 
-  const newUser = {
+  const newUser = new User({
     user_name,
-    id: uuidv4(),
-
     password,
-  };
+  });
 
-  users.push(newUser);
+  try {
+    await newUser.save();
+  } catch (err) {
+    console.log(err);
+    const error = new HttpError("Could not sign up an user.", 500);
+    return next(error);
+  }
 
-  console.log(users);
-
-  res.status(201).json({ user: newUser });
+  res.status(201).json({ user: newUser.toObject({ getters: true }) });
 };
 
 exports.loginUser = loginUser;
